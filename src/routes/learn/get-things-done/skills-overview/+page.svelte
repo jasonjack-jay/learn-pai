@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import Terminal from '$lib/components/Terminal.svelte';
 </script>
 
 <ModuleLayout
@@ -39,12 +40,76 @@
 
 <p>You don't always need to call skills explicitly. PAI uses <strong>context routing</strong> — it reads what you're asking for and automatically selects the right skill. If you say "write a blog post about AI trends," PAI knows to invoke its writing skill with the right parameters.</p>
 
-<p>But you can also invoke skills directly if you know what you want:</p>
+<p>But you can also invoke skills directly when you know exactly what you want:</p>
+
+<h3>Invoking skills by name</h3>
+
+<p>Prefix a skill name with <code>/</code> to call it directly, bypassing context routing:</p>
+
+<Terminal command="/research AI agent frameworks 2025" output="PAI RESEARCH | Standard Mode
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Spawning 3 parallel research agents...
+Agent 1: Scanning academic sources...
+Agent 2: Scanning developer documentation...
+Agent 3: Scanning recent articles and discussions...
+
+Synthesizing findings from 47 sources...
+
+Research complete. Output saved to ~/Documents/research/" title="PAI — Direct skill invocation" />
+
+<h3>Natural language invocation</h3>
+
+<p>Most of the time you just describe what you need. PAI figures out which skill to use:</p>
+
+<Terminal command="Summarize the last 3 days of Hacker News posts about LLMs" output="PAI NATIVE MODE
+TASK: Summarize recent HN posts about LLMs
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Routing to: Scraping → ContentAnalysis
+Fetching HN front page and comments...
+Filtering for LLM-related posts...
+Found 14 relevant posts across 3 days.
+
+SUMMARY:
+• Llama 4 benchmarks show..." title="PAI — Natural language routing" />
+
+<h3>Chaining skills in conversation</h3>
+
+<p>Skills can feed into each other within a single session. Here is a real example of asking PAI to do something that spans multiple skill categories:</p>
+
+<Terminal command="Research what makes a good developer portfolio site, then draft an outline for mine" output="PAI ALGORITHM MODE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Phase 1: Research (standard mode, 3 agents)
+  → 32 sources analyzed
+  → Key patterns identified
+
+Phase 2: Writing (outline mode)
+  → Applying research findings
+  → Structuring based on best practices
+
+OUTLINE:
+1. Hero section — clear value prop, not just name
+2. Featured projects — 3 max, with impact metrics
+3. Technical writing — blog posts showing depth
+..." title="PAI — Multi-skill chain" />
+
+<Callout type="tip">
+	<p>You do not need to memorize skill names. Just describe your goal and PAI will route to the right skill. Direct invocation with <code>/skill-name</code> is there for when you want precision or to force a specific approach.</p>
+</Callout>
+
+<h2>How skills are defined</h2>
+
+<p>Every skill is a YAML + Markdown file stored in <code>~/.claude/PAI/Skills/</code>. Each file declares:</p>
+
+<ul>
+	<li><strong>Name and version</strong> — skills are versioned independently</li>
+	<li><strong>Inputs</strong> — what the skill expects (a topic, a file, a URL, etc.)</li>
+	<li><strong>Modes</strong> — many skills have modes like quick, standard, and deep</li>
+	<li><strong>Workflows</strong> — the step-by-step sequences the skill follows</li>
+	<li><strong>Output format</strong> — what you get back and where it goes</li>
+</ul>
 
 <Callout type="info">
 	<p>Skills are backed by 338 workflows — predefined sequences that chain multiple actions together. A single skill invocation might trigger research, drafting, review, and formatting steps behind the scenes.</p>
 </Callout>
-
-<p><em>This path continues in Phase 2 — more skills content is being developed.</em></p>
 
 </ModuleLayout>
