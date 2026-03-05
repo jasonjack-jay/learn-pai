@@ -10,7 +10,10 @@ const config = {
 			pages: 'build',
 			assets: 'build',
 			fallback: 'index.html'
-		})
+		}),
+		paths: {
+			base: process.argv.includes('dev') ? '' : '/learn-pai'
+		}
 	}
 };
 
