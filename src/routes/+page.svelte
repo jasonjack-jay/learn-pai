@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { getProfile, setTechLevel, completeQuiz } from '$lib/state.svelte';
 
 	const profile = getProfile();
@@ -8,7 +9,7 @@
 	function selectLevel(level: 'beginner' | 'intermediate' | 'advanced') {
 		setTechLevel(level);
 		completeQuiz();
-		goto('/paths');
+		goto(`${base}/paths`);
 	}
 </script>
 

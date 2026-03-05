@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { getProfile, paths, toggleInterest, completeQuiz } from '$lib/state.svelte';
 	import type { PathId } from '$lib/state.svelte';
 
@@ -12,7 +13,7 @@
 
 	function proceed() {
 		if (profile.interests.length === 0) return;
-		goto('/learn/foundation/what-is-pai');
+		goto(`${base}/learn/foundation/what-is-pai`);
 	}
 </script>
 

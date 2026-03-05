@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { completeModule, modules } from '$lib/state.svelte';
 	import { getProfile } from '$lib/state.svelte';
 
@@ -25,7 +26,7 @@
 	function markComplete() {
 		completeModule(moduleId);
 		if (nextSlug) {
-			goto(`/learn/${nextSlug}`);
+			goto(`${base}/learn/${nextSlug}`);
 		}
 	}
 </script>
@@ -76,7 +77,7 @@
 			</button>
 		{:else if nextSlug}
 			<a
-				href="/learn/{nextSlug}"
+				href="{base}/learn/{nextSlug}"
 				class="inline-flex items-center gap-2 py-3 px-8 rounded-xl text-white font-medium text-sm transition-all hover:opacity-90"
 				style="background: var(--color-accent)"
 			>

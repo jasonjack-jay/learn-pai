@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import { base } from '$app/paths';
 	import { getProfile, getFoundationModules, getModulesForPath, paths, isModuleUnlocked, getFoundationProgress, getProgressForPath } from '$lib/state.svelte';
 	import { page } from '$app/stores';
 
@@ -8,7 +9,7 @@
 	let sidebarOpen = $state(false);
 
 	const currentPath = $derived($page.url.pathname);
-	const showSidebar = $derived(profile.quizCompleted && currentPath !== '/');
+	const showSidebar = $derived(profile.quizCompleted && currentPath !== `${base}/` && currentPath !== base);
 </script>
 
 <svelte:head>
@@ -35,7 +36,7 @@
 	<!-- Sidebar -->
 	<aside class="fixed lg:sticky top-0 left-0 h-screen w-72 bg-white border-r border-gray-200 overflow-y-auto z-40 transition-transform duration-200 {sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}">
 		<div class="p-5">
-			<a href="/paths" class="block mb-6">
+			<a href="{base}/paths" class="block mb-6">
 				<span class="text-lg font-semibold tracking-tight" style="color: var(--color-ink)">Learn PAI</span>
 				<span class="block text-xs text-gray-400 mt-0.5">Personal AI Infrastructure</span>
 			</a>
@@ -56,7 +57,7 @@
 						{@const active = currentPath.includes(mod.slug)}
 						<li>
 							<a
-								href="/learn/{mod.slug}"
+								href="{base}/learn/{mod.slug}"
 								class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors {active ? 'font-medium' : ''} {!unlocked && !completed ? 'text-gray-300 pointer-events-none' : 'hover:bg-gray-50'}"
 								style="{active ? 'background: var(--color-accent-light); color: var(--color-accent)' : ''} {completed && !active ? 'color: var(--color-success)' : ''}"
 							>
@@ -96,7 +97,7 @@
 							{@const active = currentPath.includes(mod.slug)}
 							<li>
 								<a
-									href="/learn/{mod.slug}"
+									href="{base}/learn/{mod.slug}"
 									class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors {active ? 'font-medium' : ''} {!unlocked && !completed ? 'text-gray-300 pointer-events-none' : 'hover:bg-gray-50'}"
 									style="{active ? 'background: var(--color-accent-light); color: var(--color-accent)' : ''} {completed && !active ? 'color: var(--color-success)' : ''}"
 								>
@@ -116,7 +117,7 @@
 			{/each}
 
 			<div class="pt-4 border-t border-gray-100">
-				<a href="/paths" class="flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-50">
+				<a href="{base}/paths" class="flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-50">
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
 					Change learning paths
 				</a>
