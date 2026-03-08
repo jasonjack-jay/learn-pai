@@ -9,7 +9,8 @@
 	let sidebarOpen = $state(false);
 
 	const currentPath = $derived($page.url.pathname);
-	const showSidebar = $derived(profile.quizCompleted && currentPath !== `${base}/` && currentPath !== base);
+	const isReferencePage = $derived(currentPath.includes('/terminal-reference') || currentPath.includes('/git-reference'));
+	const showSidebar = $derived(profile.quizCompleted && !isReferencePage && currentPath !== `${base}/` && currentPath !== base);
 </script>
 
 <svelte:head>

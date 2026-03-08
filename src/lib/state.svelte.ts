@@ -19,6 +19,7 @@ export interface UserProfile {
 	techLevel: 'beginner' | 'intermediate' | 'advanced' | null;
 	interests: PathId[];
 	completedModules: Set<string>;
+	visitedModules: Set<string>;
 	currentModule: string | null;
 	quizCompleted: boolean;
 }
@@ -27,12 +28,30 @@ export interface UserProfile {
 export const modules: Module[] = [
 	// Tier 1 — Foundation
 	{
+		id: 'terminal-basics',
+		title: 'Terminal Basics',
+		description: 'Get comfortable with the Mac terminal — the commands you need before anything else',
+		tier: 'foundation',
+		slug: 'foundation/terminal-basics',
+		order: 1,
+		estimatedMinutes: 12
+	},
+	{
+		id: 'git-basics',
+		title: 'Git Basics',
+		description: 'Version control from scratch — save your work, branch freely, never lose progress',
+		tier: 'foundation',
+		slug: 'foundation/git-basics',
+		order: 2,
+		estimatedMinutes: 15
+	},
+	{
 		id: 'what-is-pai',
 		title: 'What is PAI?',
 		description: 'The three levels of AI evolution and where PAI fits in',
 		tier: 'foundation',
 		slug: 'foundation/what-is-pai',
-		order: 1,
+		order: 3,
 		estimatedMinutes: 5
 	},
 	{
@@ -41,7 +60,7 @@ export const modules: Module[] = [
 		description: 'What changes when you add PAI on top of Claude Code',
 		tier: 'foundation',
 		slug: 'foundation/pai-vs-claude',
-		order: 2,
+		order: 4,
 		estimatedMinutes: 5
 	},
 	{
@@ -50,7 +69,7 @@ export const modules: Module[] = [
 		description: 'A visual tour of the ideas that guide PAI\'s design',
 		tier: 'foundation',
 		slug: 'foundation/principles',
-		order: 3,
+		order: 5,
 		estimatedMinutes: 8
 	},
 	{
@@ -59,7 +78,7 @@ export const modules: Module[] = [
 		description: 'Get PAI running on your machine step by step',
 		tier: 'foundation',
 		slug: 'foundation/installation',
-		order: 4,
+		order: 6,
 		estimatedMinutes: 10
 	},
 
@@ -246,13 +265,50 @@ export const paths: Record<PathId, { title: string; tagline: string; icon: strin
 	}
 };
 
-// Reactive state
+// localStorage persistence helpers
+const STORAGE_KEY = 'learn-pai-profile';
+
+function loadFromStorage(): Partial<UserProfile> {
+	if (typeof window === 'undefined') return {};
+	try {
+		const raw = localStorage.getItem(STORAGE_KEY);
+		if (!raw) return {};
+		const p = JSON.parse(raw);
+		return {
+			...p,
+			completedModules: new Set<string>(p.completedModules ?? []),
+			visitedModules: new Set<string>(p.visitedModules ?? [])
+		};
+	} catch {
+		return {};
+	}
+}
+
+function saveToStorage(profile: UserProfile) {
+	if (typeof window === 'undefined') return;
+	try {
+		localStorage.setItem(
+			STORAGE_KEY,
+			JSON.stringify({
+				...profile,
+				completedModules: [...profile.completedModules],
+				visitedModules: [...profile.visitedModules]
+			})
+		);
+	} catch {
+		// Storage quota exceeded or private browsing — silently ignore
+	}
+}
+
+// Initialise reactive state, hydrating from localStorage if available
+const stored = loadFromStorage();
 let _profile = $state<UserProfile>({
-	techLevel: null,
-	interests: [],
-	completedModules: new Set(),
-	currentModule: null,
-	quizCompleted: false
+	techLevel: stored.techLevel ?? null,
+	interests: stored.interests ?? [],
+	completedModules: stored.completedModules ?? new Set(),
+	visitedModules: stored.visitedModules ?? new Set(),
+	currentModule: stored.currentModule ?? null,
+	quizCompleted: stored.quizCompleted ?? false
 });
 
 export function getProfile(): UserProfile {
@@ -261,6 +317,7 @@ export function getProfile(): UserProfile {
 
 export function setTechLevel(level: UserProfile['techLevel']) {
 	_profile.techLevel = level;
+	saveToStorage(_profile);
 }
 
 export function toggleInterest(path: PathId) {
@@ -270,18 +327,41 @@ export function toggleInterest(path: PathId) {
 	} else {
 		_profile.interests = [..._profile.interests, path];
 	}
+	saveToStorage(_profile);
 }
 
 export function completeQuiz() {
 	_profile.quizCompleted = true;
+	saveToStorage(_profile);
 }
 
 export function completeModule(id: string) {
 	_profile.completedModules = new Set([..._profile.completedModules, id]);
+	saveToStorage(_profile);
+}
+
+export function markVisited(id: string) {
+	if (!_profile.visitedModules.has(id)) {
+		_profile.visitedModules = new Set([..._profile.visitedModules, id]);
+		saveToStorage(_profile);
+	}
 }
 
 export function setCurrentModule(id: string | null) {
 	_profile.currentModule = id;
+	saveToStorage(_profile);
+}
+
+export function resetProgress() {
+	_profile.techLevel = null;
+	_profile.interests = [];
+	_profile.completedModules = new Set();
+	_profile.visitedModules = new Set();
+	_profile.currentModule = null;
+	_profile.quizCompleted = false;
+	if (typeof window !== 'undefined') {
+		localStorage.removeItem(STORAGE_KEY);
+	}
 }
 
 export function getModulesForPath(pathId: PathId): Module[] {

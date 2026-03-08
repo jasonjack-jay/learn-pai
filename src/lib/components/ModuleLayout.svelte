@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { completeModule, modules } from '$lib/state.svelte';
-	import { getProfile } from '$lib/state.svelte';
+	import { completeModule, markVisited, getProfile } from '$lib/state.svelte';
 
 	let {
 		moduleId,
@@ -22,6 +22,10 @@
 
 	const profile = getProfile();
 	const isCompleted = $derived(profile.completedModules.has(moduleId));
+
+	onMount(() => {
+		markVisited(moduleId);
+	});
 
 	function markComplete() {
 		completeModule(moduleId);
