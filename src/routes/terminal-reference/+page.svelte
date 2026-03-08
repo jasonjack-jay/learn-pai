@@ -29,7 +29,7 @@
 
 		<div class="print:block hidden mb-6">
 			<h1 class="text-2xl font-bold text-gray-900">Terminal Quick Reference</h1>
-			<p class="text-sm text-gray-500 mt-1">learnpai.com — Mac Terminal Essentials</p>
+			<p class="text-sm text-gray-500 mt-1"> — Mac Terminal Essentials</p>
 		</div>
 
 		<div class="grid gap-6 sm:grid-cols-2 print:grid-cols-2">
@@ -112,7 +112,7 @@
 			</div>
 		</div>
 
-		<p class="text-xs text-gray-400 mt-6 print:mt-4">Learn PAI — Personal AI Infrastructure · learnpai.com</p>
+		<p class="text-xs text-gray-400 mt-6 print:mt-4">Learn PAI — Personal AI Infrastructure</p>
 	</div>
 </div>
 
