@@ -2,10 +2,13 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
 <ModuleLayout moduleId="user-system-split" title="USER/ vs SYSTEM/" description="How PAI keeps your customizations safe during upgrades" estimatedMinutes={6} nextSlug="architecture/algorithm">
 <h2>Two worlds, cleanly separated</h2>
 <p>Inside <code>~/.claude/PAI/</code>, PAI maintains two directories that never interfere with each other. This is one of the most important architectural decisions in PAI — it's what makes the system both upgradeable and deeply personal.</p>
+
+<DiagramImage src="pai-primitive-user-system-separation.png" alt="User/System separation — your files vs PAI infrastructure" caption="USER/ holds your personalization, SYSTEM/ holds PAI infrastructure — never mixed" />
 
 <h3>The SYSTEM/ directory</h3>
 <p><strong>SYSTEM/</strong> contains PAI's core infrastructure. Think of it as the "engine" — you rely on it, but you don't modify it directly. When you upgrade PAI, this entire directory gets replaced with the new version.</p>

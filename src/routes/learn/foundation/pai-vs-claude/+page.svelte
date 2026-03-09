@@ -2,6 +2,7 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
 
 <ModuleLayout
@@ -29,6 +30,8 @@
 />
 
 <h2>What PAI adds</h2>
+
+<DiagramImage src="pai-unique-components-diagram.png" alt="PAI Primitives — the components that make PAI more than Claude Code" caption="PAI's unique components layered on top of Claude Code" />
 
 <p><strong>Persistent identity (TELOS).</strong> Ten structured files that capture who you are — your mission, goals, projects, beliefs, mental models, strategies, narratives, lessons learned, challenges, and ideas. Every session starts with this context loaded.</p>
 

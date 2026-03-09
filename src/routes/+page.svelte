@@ -22,6 +22,11 @@
 					<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6" style="background: var(--color-accent-light); color: var(--color-accent)">
 						Based on PAI v4.0.1
 					</div>
+					<img
+						src="{base}/images/pai/pai-logo-v7.png"
+						alt="PAI Logo"
+						class="w-16 h-16 mx-auto mb-4"
+					/>
 					<h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-ink)">
 						Learn PAI
 					</h1>

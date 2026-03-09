@@ -20,6 +20,11 @@
 <div class="min-h-screen flex items-center justify-center px-6 py-16" style="background: var(--color-surface)">
 	<div class="max-w-2xl w-full">
 		<div class="text-center mb-8">
+			<img
+				src="{base}/images/pai/pai-logo-v7.png"
+				alt="PAI Logo"
+				class="w-12 h-12 mx-auto mb-3"
+			/>
 			<h1 class="text-2xl font-bold tracking-tight mb-2" style="color: var(--color-ink)">What do you want from PAI?</h1>
 			<p class="text-gray-500">Pick one or more paths. You'll start with the foundations, then dive into what interests you most.</p>
 		</div>

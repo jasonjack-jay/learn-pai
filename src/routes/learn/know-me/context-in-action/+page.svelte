@@ -2,6 +2,7 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
 
 <ModuleLayout
@@ -58,6 +59,8 @@ Want me to create calendar blocks for these?"
 
 <p>TELOS doesn't just affect planning. It changes how PAI helps with every kind of task:</p>
 
+<DiagramImage src="pai-primitive-user-system-separation.png" alt="User/System separation — your context lives in USER/" caption="Your TELOS files live in USER/ — safe, portable, and always loaded" />
+
 <p><strong>Code reviews</strong> — PAI knows your belief that "simple solutions beat clever ones," so it flags unnecessary complexity.</p>
 
 <p><strong>Writing</strong> — PAI knows your communication strategy of "lead with the bottom line," so drafts start with the key point.</p>
@@ -73,6 +76,8 @@ Want me to create calendar blocks for these?"
 <h2>The feedback loop</h2>
 
 <p>TELOS isn't a "set it and forget it" system. As you use PAI, it learns:</p>
+
+<DiagramImage src="pai-skill-personalization.png" alt="Skill personalization — skills use your context for tailored output" caption="Skills read your TELOS context to personalize every interaction" />
 
 <p>PAI's <strong>memory system</strong> captures what works and what doesn't. If it suggests an approach and you say "that's not how I'd do it," PAI records that preference. Over time, its suggestions converge toward your actual working style.</p>
 

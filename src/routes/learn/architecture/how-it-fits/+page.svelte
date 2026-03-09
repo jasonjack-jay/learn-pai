@@ -2,6 +2,7 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
 <ModuleLayout moduleId="how-it-fits" title="How It All Fits Together" description="The complete system diagram — from goals to execution" estimatedMinutes={8}>
 <h2>The full picture</h2>
@@ -78,6 +79,9 @@ Style: Technical but approachable (from STYLE.md)" />
 
 <h2>The system diagram</h2>
 <p>Here's how every primitive was involved in that single request:</p>
+
+<DiagramImage src="pai-architecture-diagram.png" alt="PAI complete architecture diagram — all 9 primitives working together" caption="The complete PAI architecture: every primitive connected" />
+
 <ul>
 <li><strong>Assistant model</strong> — PAI knew your project, your style, and your past preferences before you asked</li>
 <li><strong>TELOS</strong> — Mission, projects, style, beliefs, and relationships all informed the output</li>

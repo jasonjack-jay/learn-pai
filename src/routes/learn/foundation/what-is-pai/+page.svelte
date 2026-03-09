@@ -2,6 +2,7 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
 
 <ModuleLayout
@@ -20,7 +21,11 @@
 
 <p><strong>Level 3 is PAI — Personal AI Infrastructure.</strong> This is where things get interesting.</p>
 
+<DiagramImage src="pai-eli5-diagram.png" alt="The AI Evolution — from chatbots to agents to personal AI" caption="Three levels of AI: chatbots, agents, and personal infrastructure" />
+
 <h2>What makes PAI different</h2>
+
+<DiagramImage src="pai-what-are-we-doing-v4.png" alt="What PAI is building — the vision for personal AI infrastructure" caption="The PAI vision: from chatbots to personal AI infrastructure" />
 
 <p>PAI wraps around Claude Code and adds everything needed to make AI truly personal:</p>
 

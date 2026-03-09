@@ -2,6 +2,7 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
 <ModuleLayout moduleId="nine-primitives" title="The 9 Primitives" description="The building blocks of PAI's architecture" estimatedMinutes={10} nextSlug="architecture/user-system">
 <h2>Architecture building blocks</h2>
@@ -10,6 +11,8 @@
 <h3>1. Assistant vs Agent Interaction</h3>
 <p>Most AI tools treat every conversation as a blank slate. PAI doesn't. It maintains a persistent identity — it knows your name, your projects, your preferences, your communication style. This is the difference between a tool and a collaborator.</p>
 <p>In practice, this means PAI can say "Last time we worked on the API refactor, you preferred explicit error handling over try-catch blocks" without you reminding it. The assistant model carries context <strong>across sessions</strong>, not just within them.</p>
+
+<DiagramImage src="pai-component-1-assistant-vs-agent.png" alt="Assistant vs Agent interaction model" caption="Persistent identity: PAI remembers you across sessions" />
 
 <h3>2. TELOS (Deep Goal Understanding)</h3>
 <p>TELOS is a set of 10 structured context files that capture who you are at multiple levels. These aren't vague summaries — they're specific, actionable documents:</p>
@@ -43,6 +46,8 @@
 </ul>
 <p>Each layer can be customized independently. You might change your preferences without touching your workflows, or add a new skill without affecting your identity settings.</p>
 
+<DiagramImage src="pai-primitive-customization.png" alt="Granular customization — six layers of personalization" caption="Six customization layers: identity, preferences, workflows, skills, hooks, memory" />
+
 <h3>5. Skill System</h3>
 <p>Skills are PAI's deterministic capabilities — reliable, repeatable actions that follow a strict resolution order: <strong>CODE → CLI → PROMPT → SKILL</strong>. This means PAI first checks if there's hardcoded logic, then a CLI command, then a prompt template, then a general skill definition.</p>
 <Terminal title="Skill Resolution" command="pai skill run git-commit" output="Resolving skill: git-commit
@@ -68,14 +73,21 @@ hook: load-memory → pulls recent warm memories
 hook: project-detect → identifies active project from cwd" />
 <p>With 21 built-in hooks, PAI automates context loading, cleanup, notifications, and more. You can add your own hooks in USER/ for custom automation.</p>
 
+<DiagramImage src="pai-component-7-terminal-ui.png" alt="Terminal-based UI with hook-driven automation" caption="PAI's terminal interface with hook-driven automation" />
+
 <h3>8. Security System</h3>
 <p>Every command PAI runs gets validated against security policies. This prevents prompt injection attacks (where malicious content in a file tries to trick PAI into running harmful commands) and enforces boundaries you set.</p>
 <Callout type="warning"><p>Without a security layer, an AI assistant with shell access is a significant risk. PAI's security system validates commands before execution and blocks anything that violates your configured policies — like destructive operations on production systems.</p></Callout>
+
+<DiagramImage src="pai-component-5-security-system.png" alt="Security System — command validation and policy enforcement" caption="Every command validated against security policies before execution" />
+<DiagramImage src="pai-component-8-notification-system.png" alt="Notification System — ambient awareness through alerts" caption="Notification system for ambient awareness during long-running tasks" />
 
 <h3>9. Voice System</h3>
 <p>PAI can speak to you using ElevenLabs text-to-speech. This isn't a gimmick — it provides ambient awareness. When PAI finishes a long-running task, you hear it. When something fails, you hear the tone shift. Voice feedback lets you multitask while PAI works.</p>
 <Terminal title="Voice Notification" command="curl -s -X POST http://localhost:8888/notify -d '...'" output="Speaking: Build complete
 Audio duration: 1.2s" />
+
+<DiagramImage src="pai-component-9-voice-system.png" alt="Voice System — ElevenLabs text-to-speech integration" caption="Voice feedback provides ambient awareness while you multitask" />
 
 <h2>How they compose together</h2>
 <p>The real power of the 9 primitives isn't any individual piece — it's how they combine. Consider what happens when you start a new coding session:</p>

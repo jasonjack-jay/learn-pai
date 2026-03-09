@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
 
 <ModuleLayout
@@ -16,6 +17,8 @@
 <p>Every time you start a conversation with a chatbot, you're a blank slate. You have to re-explain who you are, what you're working on, and what you care about. Imagine hiring a brilliant assistant who gets amnesia every morning.</p>
 
 <p>TELOS is PAI's solution. It's a structured collection of 10 markdown files that capture the essential context about <em>you</em>. When PAI starts a session, it reads your TELOS files and has your full context before you type a single word.</p>
+
+<DiagramImage src="pai-primitive-telos.png" alt="TELOS — Deep Goal Understanding system" caption="TELOS: 10 structured context files that teach AI who you are" />
 
 <h2>The 10 TELOS files</h2>
 

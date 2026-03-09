@@ -2,6 +2,7 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import { getProfile } from '$lib/state.svelte';
 
 	const profile = getProfile();
@@ -26,6 +27,8 @@
 <h2>Prerequisites</h2>
 
 <p>Before installing PAI, you'll need a few things in place. The installer will check for these and offer to install what's missing, but here's what's needed:</p>
+
+<DiagramImage src="pai-component-4-ai-installation.png" alt="AI-based installation process — PAI's intelligent setup" caption="PAI's AI-powered installation detects your environment and configures automatically" />
 
 <p><strong>Claude Code</strong> — PAI runs on top of Claude Code, so you need it installed and authenticated. If you don't have it yet, visit <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>.</p>
 

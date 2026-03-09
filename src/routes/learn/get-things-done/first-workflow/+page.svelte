@@ -2,6 +2,7 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
 <ModuleLayout moduleId="first-workflow" title="Your First Workflow" description="Running a real skill-based task from start to finish" estimatedMinutes={12} nextSlug="get-things-done/workflows">
 
@@ -111,6 +112,8 @@ RECOMMENDATION: Apple Mac Mini M4 Pro (24GB)
 <h2>What just happened under the hood</h2>
 
 <p>Let's trace the full workflow that executed:</p>
+
+<DiagramImage src="pai-component-6-hook-system.png" alt="PAI Hook System — lifecycle event automation" caption="Hooks fire at key lifecycle moments, automating context loading and workflow orchestration" />
 
 <ol>
 	<li><strong>Context routing</strong> analyzed your request and selected the Research skill</li>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 
 	const principles = [
 		{ num: 1, name: 'User Centricity', short: 'You come first, not tools or models', detail: 'PAI stores your goals, preferences, and context in TELOS files so the AI always works toward what matters to you. Every design decision asks "does this serve the user?" first. For example, PAI\'s memory system remembers your coding style preferences so you don\'t have to repeat yourself across sessions.' },
@@ -67,10 +68,16 @@
 
 <p><strong>You are the priority.</strong> Principles 1, 3, and 14 all center on the human. PAI exists to serve your goals, not to show off AI capabilities.</p>
 
+<DiagramImage src="pai-human-centered-v3.png" alt="Human-centered design — PAI puts you at the center" caption="Principle theme: You are the priority" />
+
 <p><strong>Structure beats cleverness.</strong> Principles 4, 5, 6, 7, 8, and 11 emphasize that good architecture and deterministic tools will outperform clever prompting every time.</p>
+
+<DiagramImage src="pai-context-first-v2.png" alt="Context-first approach — structure over clever prompts" caption="Principle theme: Context and structure first" />
 
 <p><strong>Learning is continuous.</strong> Principles 2, 13, 15, and 16 create a feedback loop where PAI (and you) get better over time through systematic observation and honest failure.</p>
 
 <p><strong>Production-grade engineering.</strong> Principles 9, 10, and 12 mean PAI isn't a toy — it's infrastructure you can rely on, maintained like real software.</p>
+
+<DiagramImage src="pai-platform-independence-diagram.png" alt="Platform independence — PAI works across environments" caption="Principle theme: Platform-independent, production-grade infrastructure" />
 
 </ModuleLayout>

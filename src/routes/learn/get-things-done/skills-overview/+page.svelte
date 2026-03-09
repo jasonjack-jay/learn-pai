@@ -2,6 +2,7 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
 
 <ModuleLayout
@@ -17,6 +18,8 @@
 <p>Skills are PAI's structured capabilities. Unlike free-form prompting where you hope the AI understands what you want, skills are <strong>deterministic, tested, and versioned</strong>. Each skill knows exactly what it does, what inputs it needs, and what outputs it produces.</p>
 
 <p>Think of them as specialized tools in a workshop. You wouldn't use a hammer for everything — you'd pick the right tool for the job. PAI does the same with skills.</p>
+
+<DiagramImage src="pai-component-2-skill-system.png" alt="PAI Skill System architecture" caption="The Skill System: 63 deterministic, versioned capabilities" />
 
 <h2>13 categories, 63 skills</h2>
 
@@ -107,6 +110,8 @@ OUTLINE:
 	<li><strong>Workflows</strong> — the step-by-step sequences the skill follows</li>
 	<li><strong>Output format</strong> — what you get back and where it goes</li>
 </ul>
+
+<DiagramImage src="pai-component-3-memory-system.png" alt="PAI Memory System — hot, warm, and cold tiers" caption="The Memory System supports skills with context from past interactions" />
 
 <Callout type="info">
 	<p>Skills are backed by 338 workflows — predefined sequences that chain multiple actions together. A single skill invocation might trigger research, drafting, review, and formatting steps behind the scenes.</p>
