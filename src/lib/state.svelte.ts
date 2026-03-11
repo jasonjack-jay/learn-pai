@@ -39,11 +39,11 @@ export const modules: Module[] = [
 	{
 		id: 'git-basics',
 		title: 'Git Basics',
-		description: 'Version control from scratch — save your work, branch freely, never lose progress',
+		description: 'The six concepts you need — Claude Code handles the rest',
 		tier: 'foundation',
 		slug: 'foundation/git-basics',
 		order: 2,
-		estimatedMinutes: 15
+		estimatedMinutes: 6
 	},
 	{
 		id: 'what-is-pai',

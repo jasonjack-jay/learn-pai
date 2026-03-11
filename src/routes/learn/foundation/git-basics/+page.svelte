@@ -8,283 +8,179 @@
 <ModuleLayout
 	moduleId="git-basics"
 	title="Git Basics"
-	description="Version control from scratch — save your work, branch freely, never lose progress"
-	estimatedMinutes={15}
+	description="The six concepts you need — Claude Code handles the rest"
+	estimatedMinutes={6}
 	nextSlug="foundation/what-is-pai"
 >
 
-<h2>What is version control?</h2>
+<h2>You don't need to learn Git commands</h2>
 
-<p>Imagine being able to take a snapshot of every file in your project at any point in time — and being able to go back to any snapshot instantly. That's version control. Git is the tool almost every developer in the world uses to do this.</p>
+<p>That might sound strange in a lesson called "Git Basics." But here's the thing: PAI runs on Claude Code, and Claude Code is <em>excellent</em> at Git. It can commit your work, create branches, push to GitHub, resolve conflicts — all of it. You just need to know enough to tell it what you want.</p>
 
-<p>Git also makes it easy to experiment safely. Want to try a new idea without risking your working code? Create a branch, try it, and if it doesn't work out, delete the branch and pick up right where you left off. Nothing is lost.</p>
-
-<Callout type="tip">
-	<p>If you already use Git regularly, feel free to skim this and mark it complete. The section on good commit messages and GUIs might still be worth a look.</p>
-</Callout>
-
-<h2>Checking and installing Git</h2>
-
-<p>Git usually comes pre-installed on Macs. Let's check:</p>
-
-<Terminal
-	command="git --version"
-	output="git version 2.44.0"
-	title="Terminal"
-/>
-
-<p>If you see a version number, you're good. If not, install it by running <code>xcode-select --install</code> — this installs Apple's developer tools which include Git.</p>
-
-<h2>One-time setup</h2>
-
-<p>Before your first commit, tell Git who you are. This name and email appear in your commit history.</p>
-
-<Terminal
-	command={`git config --global user.name "Your Name"
-git config --global user.email "you@example.com"`}
-	title="Terminal — run both lines"
-/>
-
-<p>You only need to do this once. Git stores it in <code>~/.gitconfig</code>.</p>
-
-<h2>The core workflow: Modify → Stage → Commit</h2>
-
-<p>Everything in Git revolves around this three-step cycle. Understanding it makes everything else click.</p>
-
-<p><strong>1. Modify</strong> — you make changes to files.</p>
-<p><strong>2. Stage</strong> — you tell Git which changes to include in the next snapshot (<code>git add</code>).</p>
-<p><strong>3. Commit</strong> — you take the snapshot and record it with a message (<code>git commit</code>).</p>
-
-<h3>Starting a repository</h3>
-
-<Terminal
-	command="cd ~/dev/my-first-test-project && git init"
-	output="Initialized empty Git repository in /Users/yourname/dev/my-first-test-project/.git/"
-	title="Terminal"
-/>
-
-<h3>Checking status</h3>
-
-<p><code>git status</code> is the command you'll run constantly. It tells you exactly what's changed and what's staged.</p>
-
-<Terminal
-	command="git status"
-	output="On branch main
-
-No commits yet
-
-Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
-	README.md
-
-nothing added to commit but untracked files present"
-	title="Terminal"
-/>
-
-<h3>Staging changes</h3>
-
-<Terminal
-	command="git add README.md"
-	title="Stage a specific file"
-/>
-
-<Terminal
-	command="git add ."
-	title="Stage everything at once"
-/>
-
-<h3>Committing</h3>
-
-<Terminal
-	command={`git commit -m "Add README with project overview"`}
-	output="[main (root-commit) 3a2f1b4] Add README with project overview
- 1 file changed, 5 insertions(+)"
-	title="Terminal"
-/>
-
-<h2>Writing good commit messages</h2>
-
-<p>A good commit message is a gift to your future self. When you look back in six months, the message should tell you <em>why</em> you made the change — not just what files were touched.</p>
-
-<div class="overflow-x-auto my-6">
-<table class="w-full text-sm border-collapse">
-	<thead>
-		<tr class="border-b border-gray-200">
-			<th class="text-left py-2 pr-6 font-semibold text-gray-700">Bad</th>
-			<th class="text-left py-2 font-semibold text-gray-700">Good</th>
-		</tr>
-	</thead>
-	<tbody class="divide-y divide-gray-100">
-		<tr><td class="py-2 pr-6 text-gray-500 font-mono text-xs">fix stuff</td><td class="py-2 text-gray-700 font-mono text-xs">Fix login crash when password contains special chars</td></tr>
-		<tr><td class="py-2 pr-6 text-gray-500 font-mono text-xs">update</td><td class="py-2 text-gray-700 font-mono text-xs">Update homepage copy to reflect new pricing</td></tr>
-		<tr><td class="py-2 pr-6 text-gray-500 font-mono text-xs">wip</td><td class="py-2 text-gray-700 font-mono text-xs">Add draft of onboarding flow (incomplete)</td></tr>
-		<tr><td class="py-2 pr-6 text-gray-500 font-mono text-xs">changes</td><td class="py-2 text-gray-700 font-mono text-xs">Remove deprecated API calls from auth module</td></tr>
-	</tbody>
-</table>
-</div>
-
-<p>Aim for messages that complete the sentence: <em>"If applied, this commit will…"</em></p>
-
-<h2>Viewing history</h2>
-
-<Terminal
-	command="git log --oneline"
-	output="3a2f1b4 Add README with project overview
-9c1e8d2 Initial project setup
-..."
-	title="Terminal"
-/>
-
-<Terminal
-	command="git log --oneline --graph --all"
-	output="* 3a2f1b4 (HEAD -> main) Add README with project overview
-* 9c1e8d2 Initial project setup"
-	title="Visual branch graph"
-/>
-
-<h2>Branches — your safety net</h2>
-
-<p>A branch is an independent copy of your project where you can experiment freely. When it works, you merge it back. When it doesn't, you delete it. Nothing on <code>main</code> is ever at risk.</p>
-
-<Terminal
-	command="git checkout -b my-experiment"
-	output="Switched to a new branch 'my-experiment'"
-	title="Create and switch to a new branch in one step"
-/>
-
-<Terminal
-	command="git branch"
-	output="  main
-* my-experiment"
-	title="List branches — the * shows your current branch"
-/>
-
-<Terminal
-	command="git checkout main"
-	output="Switched to branch 'main'"
-	title="Switch back to main"
-/>
-
-<Terminal
-	command="git merge my-experiment"
-	output="Updating 9c1e8d2..3a2f1b4
-Fast-forward
- experiment.txt | 3 +++
- 1 file changed, 3 insertions(+)"
-	title="Merge your branch back into main"
-/>
-
-<Terminal
-	command="git branch -d my-experiment"
-	output="Deleted branch my-experiment (was 3a2f1b4)."
-	title="Clean up the branch when done"
-/>
+<p>That means understanding <strong>six concepts</strong>. Not commands, not flags, not syntax. Just the ideas.</p>
 
 <Callout type="tip">
-	<p>Get in the habit of creating a branch for every new feature or experiment, no matter how small. It costs almost nothing and saves you from many painful situations.</p>
+	<p>If you already use Git, skip ahead and mark this complete. If you've never touched it, this will take about five minutes and you'll be ready for everything that follows.</p>
 </Callout>
 
-<h2>Going back — undoing things</h2>
+<h2>What is Git?</h2>
 
-<p>One of the most valuable things Git gives you is a reliable "undo" for your project.</p>
+<p>Git is a system that takes <strong>snapshots</strong> of your project over time. Every snapshot records what every file looked like at that moment. You can go back to any snapshot, compare them, or branch off in a different direction. It's like an unlimited undo history for your entire project.</p>
 
-<div class="overflow-x-auto my-6">
-<table class="w-full text-sm border-collapse">
-	<thead>
-		<tr class="border-b border-gray-200">
-			<th class="text-left py-2 pr-6 font-semibold text-gray-700">Situation</th>
-			<th class="text-left py-2 font-semibold text-gray-700">Command</th>
-		</tr>
-	</thead>
-	<tbody class="divide-y divide-gray-100">
-		<tr><td class="py-2 pr-6 text-gray-600">Discard changes to a file (not staged)</td><td class="py-2 font-mono text-xs text-gray-700">git restore filename</td></tr>
-		<tr><td class="py-2 pr-6 text-gray-600">Unstage a file</td><td class="py-2 font-mono text-xs text-gray-700">git restore --staged filename</td></tr>
-		<tr><td class="py-2 pr-6 text-gray-600">Undo the last commit (keep changes)</td><td class="py-2 font-mono text-xs text-gray-700">git reset --soft HEAD~1</td></tr>
-		<tr><td class="py-2 pr-6 text-gray-600">Safely revert a past commit</td><td class="py-2 font-mono text-xs text-gray-700">git revert &lt;commit-hash&gt;</td></tr>
-		<tr><td class="py-2 pr-6 text-gray-600">See what commit you had 5 steps ago</td><td class="py-2 font-mono text-xs text-gray-700">git log --oneline</td></tr>
-	</tbody>
-</table>
-</div>
+<p>Almost every software project in the world uses Git. PAI's own code lives in a Git repository. The project you'll clone to install PAI is a Git repository. It's everywhere.</p>
 
-<Callout type="warning">
-	<p><code>git reset --hard</code> discards changes permanently. Use <code>git reset --soft</code> to undo a commit while keeping your file changes safe.</p>
-</Callout>
+<h2>The six concepts</h2>
 
-<h2>Hands-on practice session</h2>
+<div class="space-y-6 my-8">
 
-<p>Run through this sequence in your <code>~/dev/my-first-test-project</code> folder. Each step builds on the last.</p>
+	<div class="bg-white rounded-xl border border-gray-200 p-5">
+		<div class="flex items-start gap-3 mb-3">
+			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">1</span>
+			<div>
+				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">Clone</h3>
+				<p class="text-sm text-gray-500 m-0">Getting a project onto your machine</p>
+			</div>
+		</div>
+		<p class="text-sm text-gray-600 mb-3">When someone shares a project on GitHub, you <strong>clone</strong> it to get your own copy on your computer. It downloads all the files and their entire history. This is how you'll get PAI — by cloning its repository.</p>
+		<Terminal
+			command="Ask Claude Code: clone the PAI repository"
+			output="I'll clone it for you.
+git clone https://github.com/danielmiessler/Personal_AI_Infrastructure.git
+Cloning into 'Personal_AI_Infrastructure'... done."
+			title="Claude Code handles it"
+		/>
+	</div>
 
-<Terminal
-	command={`# Start fresh in your project folder
-cd ~/dev/my-first-test-project
+	<div class="bg-white rounded-xl border border-gray-200 p-5">
+		<div class="flex items-start gap-3 mb-3">
+			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">2</span>
+			<div>
+				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">Commit</h3>
+				<p class="text-sm text-gray-500 m-0">Saving a snapshot of your work</p>
+			</div>
+		</div>
+		<p class="text-sm text-gray-600 mb-3">A <strong>commit</strong> is a snapshot. It captures the state of your project at a specific moment, with a short message explaining what changed. Think of it as pressing "Save" — except you can always go back to any previous save.</p>
+		<p class="text-sm text-gray-600 mb-3">The message matters. A good commit message completes the sentence: <em>"If applied, this commit will…"</em></p>
+		<div class="grid grid-cols-2 gap-3 text-sm my-3">
+			<div class="bg-red-50 rounded-lg p-3">
+				<p class="font-medium text-red-700 text-xs mb-1">Unhelpful</p>
+				<p class="font-mono text-xs text-red-600">fix stuff</p>
+				<p class="font-mono text-xs text-red-600">update</p>
+				<p class="font-mono text-xs text-red-600">wip</p>
+			</div>
+			<div class="bg-green-50 rounded-lg p-3">
+				<p class="font-medium text-green-700 text-xs mb-1">Clear</p>
+				<p class="font-mono text-xs text-green-600">Fix login crash with special chars</p>
+				<p class="font-mono text-xs text-green-600">Add onboarding flow for new users</p>
+				<p class="font-mono text-xs text-green-600">Remove deprecated API calls</p>
+			</div>
+		</div>
+		<Terminal
+			command="Ask Claude Code: commit my changes"
+			output="I'll review what changed and create a commit.
 
-# Check current state
-git status
+Looking at your changes... you've updated the homepage copy
+and fixed two broken links.
 
-# Create a file
-echo "# My Project" > README.md
+git add src/pages/index.html src/pages/about.html
+git commit -m &quot;Update homepage copy and fix broken links&quot;
 
-# Stage it
-git add README.md
+Done. Changes committed."
+			title="Claude Code writes good commit messages for you"
+		/>
+	</div>
 
-# Commit it
-git commit -m "Add README"
+	<div class="bg-white rounded-xl border border-gray-200 p-5">
+		<div class="flex items-start gap-3 mb-3">
+			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">3</span>
+			<div>
+				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">Branch</h3>
+				<p class="text-sm text-gray-500 m-0">A safe space to experiment</p>
+			</div>
+		</div>
+		<p class="text-sm text-gray-600 mb-3">A <strong>branch</strong> is a parallel version of your project. You create one when you want to try something without risking your working code. If the experiment works, you merge it back. If it doesn't, you delete the branch and nothing is lost.</p>
+		<p class="text-sm text-gray-600 mb-3">Every project has a main branch (usually called <code>main</code>). That's the "official" version. Everything else branches off from it.</p>
+		<Terminal
+			command="Ask Claude Code: create a branch for the new feature"
+			output="I'll create a new branch for you.
+git checkout -b add-search-feature
+Switched to a new branch 'add-search-feature'
 
-# Create a branch
-git checkout -b add-notes
+You're now working on the new branch.
+Any changes you make won't affect main."
+			title="Branches keep your work safe"
+		/>
+	</div>
 
-# Make a change on the branch
-echo "Some notes here" > notes.txt
-git add notes.txt
-git commit -m "Add notes file"
+	<div class="bg-white rounded-xl border border-gray-200 p-5">
+		<div class="flex items-start gap-3 mb-3">
+			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">4</span>
+			<div>
+				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">Push &amp; Pull</h3>
+				<p class="text-sm text-gray-500 m-0">Syncing with GitHub</p>
+			</div>
+		</div>
+		<p class="text-sm text-gray-600 mb-3"><strong>Push</strong> sends your commits from your computer up to GitHub (or wherever the project lives online). <strong>Pull</strong> brings other people's changes down to your computer. It's how you stay in sync.</p>
+		<p class="text-sm text-gray-600 mb-3">If you're working alone, pushing is like backing up your work to the cloud. If you're on a team, it's how everyone shares progress.</p>
+		<Terminal
+			command="Ask Claude Code: push my changes to GitHub"
+			output="Pushing your branch to GitHub...
+git push origin add-search-feature
+Done. Your changes are now on GitHub."
+			title="Push to share, pull to sync"
+		/>
+	</div>
 
-# View your history
-git log --oneline --graph --all
-
-# Merge back to main
+	<div class="bg-white rounded-xl border border-gray-200 p-5">
+		<div class="flex items-start gap-3 mb-3">
+			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">5</span>
+			<div>
+				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">Merge</h3>
+				<p class="text-sm text-gray-500 m-0">Bringing work together</p>
+			</div>
+		</div>
+		<p class="text-sm text-gray-600 mb-3">When your branch is ready, you <strong>merge</strong> it back into main. Git takes the changes from your branch and combines them with main. If two people changed the same line, Git will flag a <strong>conflict</strong> and ask you to decide which version to keep.</p>
+		<Terminal
+			command="Ask Claude Code: merge my branch into main"
+			output="Switching to main and merging your branch.
 git checkout main
-git merge add-notes
+git merge add-search-feature
+Merge successful. Your search feature is now part of main.
 
-# Clean up
-git branch -d add-notes`}
-	title="Full practice session"
-/>
-
-<h2>Git GUI clients for Mac</h2>
-
-<p>Command-line Git is powerful, but a visual interface makes it much easier to understand what's happening — especially when branching and merging. These three are the best options for Mac:</p>
-
-<div class="grid gap-4 my-6 sm:grid-cols-3">
-	<div class="border border-gray-200 rounded-xl p-4">
-		<div class="font-semibold text-gray-800 mb-1">Tower</div>
-		<div class="text-xs text-gray-500 mb-2">Paid ($69/yr)</div>
-		<p class="text-sm text-gray-600">The most polished Git client on Mac. Drag-and-drop merging, beautiful branch visualisation, built-in conflict resolver. Best overall pick.</p>
+Want me to delete the branch?"
+			title="Claude Code can handle merge conflicts too"
+		/>
 	</div>
-	<div class="border border-gray-200 rounded-xl p-4">
-		<div class="font-semibold text-gray-800 mb-1">GitKraken</div>
-		<div class="text-xs text-gray-500 mb-2">Freemium</div>
-		<p class="text-sm text-gray-600">Visually striking, works on Mac/Windows/Linux. Great for teams. Integrates with GitHub, GitLab, Jira. Undo/Redo button is genuinely useful.</p>
+
+	<div class="bg-white rounded-xl border border-gray-200 p-5">
+		<div class="flex items-start gap-3 mb-3">
+			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">6</span>
+			<div>
+				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">Repository</h3>
+				<p class="text-sm text-gray-500 m-0">The project itself</p>
+			</div>
+		</div>
+		<p class="text-sm text-gray-600 mb-0">A <strong>repository</strong> (or "repo") is just a project folder that Git is tracking. It contains all your files plus the hidden <code>.git</code> folder where Git stores every snapshot you've ever made. When someone says "check the repo," they mean "look at the project."</p>
 	</div>
-	<div class="border border-gray-200 rounded-xl p-4">
-		<div class="font-semibold text-gray-800 mb-1">Sourcetree</div>
-		<div class="text-xs text-gray-500 mb-2">Free</div>
-		<p class="text-sm text-gray-600">Built by Atlassian. Solid, reliable, completely free. Good visualisation and covers all the basics well. Best free option.</p>
-	</div>
+
 </div>
 
-<p>You don't have to pick one right now. The command line is always there and always works. GUIs make certain things easier — especially reviewing diffs and managing branches visually.</p>
+<h2>That's genuinely all you need</h2>
 
-<h2>Quick reference card</h2>
+<p>With these six concepts, you can have a conversation with Claude Code about any Git operation. You don't need to remember whether it's <code>git checkout -b</code> or <code>git switch -c</code>. You just say what you want:</p>
 
-<p>Here's a printable one-page Git cheat sheet covering all the commands above plus a few extras.</p>
+<ul>
+	<li><em>"Commit my work with a good message"</em></li>
+	<li><em>"Create a branch for the redesign"</em></li>
+	<li><em>"Push this to GitHub"</em></li>
+	<li><em>"What changed since yesterday?"</em></li>
+	<li><em>"Undo my last commit but keep the changes"</em></li>
+</ul>
 
-<a
-	href="{base}/git-reference"
-	target="_blank"
-	class="inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
->
-	<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-	Open Git Quick Reference
-</a>
+<p>Claude Code knows every Git command. Your job is knowing what you want to happen. Now you do.</p>
+
+<Callout type="info">
+	<p>If you want to go deeper into Git commands, we've put together a <a href="{base}/git-reference" target="_blank">quick reference card</a> with the most common ones. It's completely optional — but useful if you're the kind of person who likes to understand what's happening under the hood.</p>
+</Callout>
 
 </ModuleLayout>
