@@ -30,11 +30,11 @@ export const modules: Module[] = [
 	{
 		id: 'terminal-basics',
 		title: 'Terminal Basics',
-		description: 'Get comfortable with the Mac terminal — the commands you need before anything else',
+		description: 'Get comfortable with the place where PAI lives',
 		tier: 'foundation',
 		slug: 'foundation/terminal-basics',
 		order: 1,
-		estimatedMinutes: 12
+		estimatedMinutes: 7
 	},
 	{
 		id: 'git-basics',
