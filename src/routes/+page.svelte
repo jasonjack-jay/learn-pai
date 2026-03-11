@@ -20,7 +20,7 @@
 			{#if step === 0}
 				<div class="text-center mb-12" >
 					<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6" style="background: var(--color-accent-light); color: var(--color-accent)">
-						Based on PAI v4.0.1
+						Based on PAI v4.0.3
 					</div>
 					<img
 						src="{base}/images/pai/pai-logo-v7.png"

@@ -53,7 +53,7 @@ Receiving objects: 100%, done."
 <h2>Step 2: Navigate to the latest release</h2>
 
 <Terminal
-	command="cd Personal_AI_Infrastructure/Releases/v4.0.1"
+	command="cd Personal_AI_Infrastructure/Releases/v4.0.3"
 	title="Terminal"
 />
 
@@ -61,7 +61,7 @@ Receiving objects: 100%, done."
 
 <Terminal
 	command="cp -r .claude ~/ && cd ~/.claude && bash install.sh"
-	output="🚀 PAI Installer v4.0.1
+	output="🚀 PAI Installer v4.0.3
 ━━━━━━━━━━━━━━━━━━━━━
 Detecting system... macOS detected
 Checking prerequisites...
@@ -90,7 +90,7 @@ Let's personalize your PAI installation..."
 
 <Terminal
 	command="pai"
-	output="PAI v4.0.1 initialized
+	output="PAI v4.0.3 initialized
 Loading TELOS context... ✓
 Loading skills (63)... ✓
 Loading hooks (21)... ✓
