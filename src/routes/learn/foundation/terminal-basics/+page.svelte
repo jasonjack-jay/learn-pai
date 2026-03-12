@@ -3,6 +3,10 @@
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import Accordion from '$lib/components/Accordion.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
+
+	let termGroup = $state({ active: 'pwd' });
 </script>
 
 <ModuleLayout
@@ -12,6 +16,12 @@
 	estimatedMinutes={7}
 	nextSlug="foundation/git-basics"
 >
+
+<DiagramImage
+	src="terminal/terminal-banner.png"
+	alt="A cinematic scene inspired by 2001 A Space Odyssey — primitive apes emerging from their cave at dawn, crouching in awe before a towering dark terminal screen glowing with green phosphor text, reaching hesitantly towards it"
+	caption="The dawn of the command line"
+/>
 
 <h2>Why the terminal matters</h2>
 
@@ -31,48 +41,42 @@
 
 <h2>The four things you need to know</h2>
 
-<div class="space-y-6 my-8">
+<div class="space-y-2 my-8">
 
-	<div class="bg-white rounded-xl border border-gray-200 p-5">
-		<div class="flex items-start gap-3 mb-3">
-			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">1</span>
-			<div>
-				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">Where am I?</h3>
-				<p class="text-sm text-gray-500 m-0"><code>pwd</code> — print working directory</p>
-			</div>
-		</div>
+	<Accordion number={1} title="Where am I?" subtitle="pwd — print working directory" defaultOpen={true} group={termGroup} id="pwd">
+		<DiagramImage
+			src="terminal/terminal-pwd.png"
+			alt="A comic book explorer with a magnifying glass standing on a glowing green file path on a retro CRT monitor with Matrix-style cascading code — representing the pwd command"
+			caption="pwd tells you exactly where you are in the filesystem"
+		/>
 		<p class="text-sm text-gray-600 mb-3">The terminal is always "in" a folder on your Mac. <code>pwd</code> tells you which one. When you first open Terminal, you'll be in your home folder.</p>
 		<Terminal
 			command="pwd"
 			output="/Users/yourname"
 			title="Terminal"
 		/>
-	</div>
+	</Accordion>
 
-	<div class="bg-white rounded-xl border border-gray-200 p-5">
-		<div class="flex items-start gap-3 mb-3">
-			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">2</span>
-			<div>
-				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">What's in this folder?</h3>
-				<p class="text-sm text-gray-500 m-0"><code>ls</code> — list contents</p>
-			</div>
-		</div>
+	<Accordion number={2} title="What's in this folder?" subtitle="ls — list contents" group={termGroup} id="ls">
+		<DiagramImage
+			src="terminal/terminal-ls.png"
+			alt="A comic book detective shining a flashlight on rows of glowing green folders on a retro CRT monitor with Matrix-style code — representing the ls command"
+			caption="ls shines a light on everything in the current folder"
+		/>
 		<p class="text-sm text-gray-600 mb-3"><code>ls</code> shows you what's in the current folder. It's like opening a Finder window but faster.</p>
 		<Terminal
 			command="ls"
 			output="Desktop    Documents    Downloads    Movies    Music    Pictures"
 			title="Terminal"
 		/>
-	</div>
+	</Accordion>
 
-	<div class="bg-white rounded-xl border border-gray-200 p-5">
-		<div class="flex items-start gap-3 mb-3">
-			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">3</span>
-			<div>
-				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">Move to a different folder</h3>
-				<p class="text-sm text-gray-500 m-0"><code>cd</code> — change directory</p>
-			</div>
-		</div>
+	<Accordion number={3} title="Move to a different folder" subtitle="cd — change directory" group={termGroup} id="cd">
+		<DiagramImage
+			src="terminal/terminal-cd.png"
+			alt="A comic book speedster dashing through a series of glowing green doorways labeled with folder names on a retro CRT monitor — representing the cd command"
+			caption="cd lets you dash through the folder structure"
+		/>
 		<p class="text-sm text-gray-600 mb-3"><code>cd</code> moves you into a folder. <code>cd ..</code> goes back up one level. <code>cd ~</code> takes you home from anywhere. That's the whole mental model.</p>
 		<Terminal
 			command="cd Documents"
@@ -85,18 +89,16 @@
 		<Callout type="tip">
 			<p><strong>Tab completion</strong> is your best friend. Start typing a folder name and press <kbd>Tab</kbd> — the terminal will finish it for you. This saves enormous time and prevents typos.</p>
 		</Callout>
-	</div>
+	</Accordion>
 
-	<div class="bg-white rounded-xl border border-gray-200 p-5">
-		<div class="flex items-start gap-3 mb-3">
-			<span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">4</span>
-			<div>
-				<h3 class="text-base font-semibold m-0" style="color: var(--color-ink)">Create a folder</h3>
-				<p class="text-sm text-gray-500 m-0"><code>mkdir</code> — make directory</p>
-			</div>
-		</div>
+	<Accordion number={4} title="Create a folder" subtitle="mkdir — make directory" group={termGroup} id="mkdir">
+		<DiagramImage
+			src="terminal/terminal-mkdir.png"
+			alt="A comic book builder with a hard hat constructing a new glowing green folder from digital bricks on a retro CRT monitor — representing the mkdir command"
+			caption="mkdir builds brand new folders from nothing"
+		/>
 		<p class="text-sm text-gray-600 mb-0"><code>mkdir foldername</code> creates a new folder. That's the terminal equivalent of right-clicking in Finder and choosing "New Folder."</p>
-	</div>
+	</Accordion>
 
 </div>
 
@@ -119,9 +121,15 @@
 <p>Before moving on, let's create a tidy home for your projects. Run these three commands:</p>
 
 <Terminal
-	command={`cd ~
-mkdir -p dev
-cd dev && pwd`}
+	command="cd ~"
+	title="Create your dev folder"
+/>
+<Terminal
+	command="mkdir -p dev"
+	title="Create your dev folder"
+/>
+<Terminal
+	command="cd dev && pwd"
 	output="/Users/yourname/dev"
 	title="Create your dev folder"
 />
