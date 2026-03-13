@@ -13,7 +13,7 @@
 	title="Installing Claude Code"
 	description="Get Claude Code running in your terminal in under five minutes"
 	estimatedMinutes={5}
-	nextSlug="foundation/what-is-pai"
+	nextSlug="foundation/superpowers"
 >
 
 <h2>What is Claude Code?</h2>
