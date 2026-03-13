@@ -22,16 +22,24 @@
 
 	let open = $derived(group && id ? group.active === id : localOpen);
 
+	let el: HTMLDivElement;
+
 	function toggle() {
+		const wasOpen = open;
 		if (group && id) {
 			group.active = group.active === id ? null : id;
 		} else {
 			localOpen = !localOpen;
 		}
+		if (!wasOpen) {
+			requestAnimationFrame(() => {
+				el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			});
+		}
 	}
 </script>
 
-<div class="bg-white rounded-xl border border-gray-200 overflow-hidden my-4">
+<div class="bg-white rounded-xl border border-gray-200 overflow-hidden my-4 scroll-mt-4" bind:this={el}>
 	<button
 		class="w-full flex items-center gap-3 p-5 text-left cursor-pointer hover:bg-gray-50 transition-colors"
 		onclick={toggle}

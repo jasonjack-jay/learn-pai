@@ -23,6 +23,17 @@
 	];
 
 	let expanded = $state<number | null>(null);
+	let principleEls: Record<number, HTMLButtonElement> = {};
+
+	function toggle(num: number) {
+		const opening = expanded !== num;
+		expanded = opening ? num : null;
+		if (opening) {
+			requestAnimationFrame(() => {
+				principleEls[num]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			});
+		}
+	}
 </script>
 
 <ModuleLayout
@@ -42,8 +53,9 @@
 <div class="space-y-2 my-8">
 	{#each principles as p}
 		<button
-			class="w-full text-left rounded-xl border transition-all cursor-pointer {expanded === p.num ? 'bg-white border-gray-300 shadow-sm' : 'bg-white/60 border-gray-200 hover:bg-white hover:border-gray-300'}"
-			onclick={() => expanded = expanded === p.num ? null : p.num}
+			bind:this={principleEls[p.num]}
+			class="w-full text-left rounded-xl border transition-all cursor-pointer scroll-mt-4 {expanded === p.num ? 'bg-white border-gray-300 shadow-sm' : 'bg-white/60 border-gray-200 hover:bg-white hover:border-gray-300'}"
+			onclick={() => toggle(p.num)}
 		>
 			<div class="flex items-start gap-3 p-4">
 				<span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 {expanded === p.num ? 'text-white' : 'bg-gray-100 text-gray-500'}" style="{expanded === p.num ? 'background: var(--color-accent)' : ''}">{p.num}</span>
