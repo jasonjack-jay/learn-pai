@@ -99,6 +99,15 @@ export const modules: Module[] = [
 		order: 8,
 		estimatedMinutes: 8
 	},
+	{
+		id: 'bmad',
+		title: 'The BMAD Method',
+		description: 'A full agile development team, powered by AI agents',
+		tier: 'foundation',
+		slug: 'foundation/bmad',
+		order: 9,
+		estimatedMinutes: 10
+	},
 
 	// Tier 2 — Path A: Know Me
 	{

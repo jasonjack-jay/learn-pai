@@ -4,19 +4,8 @@
 	import Callout from '$lib/components/Callout.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
-	import { getProfile } from '$lib/state.svelte';
-
 	let skillsGroup = $state({ active: 'brainstorming' });
 	let installGroup = $state({ active: 'install-step' });
-
-	const profile = getProfile();
-	const nextSlug = $derived(
-		profile.interests.length > 0
-			? profile.interests[0] === 'know-me' ? 'know-me/telos-intro'
-			: profile.interests[0] === 'get-things-done' ? 'get-things-done/skills-overview'
-			: 'architecture/nine-primitives'
-			: null
-	);
 </script>
 
 <ModuleLayout
@@ -24,7 +13,7 @@
 	title="Superpowers"
 	description="Give Claude Code structured development superpowers"
 	estimatedMinutes={8}
-	nextSlug={nextSlug}
+	nextSlug="foundation/bmad"
 >
 
 <DiagramImage
@@ -55,22 +44,13 @@
 	caption="One command to unlock your powers"
 />
 
+<p>Superpowers is actively developed and supports multiple platforms. Follow the official installation guide for the most current instructions:</p>
+
+<p><strong><a href="https://github.com/obra/superpowers?tab=readme-ov-file#installation" target="_blank" rel="noopener">Superpowers Installation Guide &rarr;</a></strong></p>
+
 <div class="space-y-2 my-8">
 
-	<Accordion number={1} title="Install the plugin" subtitle="One command inside Claude Code" defaultOpen={true} group={installGroup} id="install-step">
-		<p class="text-sm text-gray-600 mb-3">Open Claude Code in any project and run this slash command:</p>
-		<Terminal
-			command="/plugin install superpowers@claude-plugins-official"
-			output="Installing superpowers...
-Superpowers plugin installed successfully."
-			title="Claude Code"
-		/>
-		<Callout type="tip">
-			<p>Superpowers also works with Cursor, Gemini CLI, Codex, and OpenCode. Check the <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">GitHub repo</a> for platform-specific install instructions.</p>
-		</Callout>
-	</Accordion>
-
-	<Accordion number={2} title="Verify it's working" subtitle="Ask Claude to plan something" group={installGroup} id="verify-step">
+	<Accordion number={1} title="Verify it's working" subtitle="Ask Claude to plan something" defaultOpen={true} group={installGroup} id="install-step">
 		<p class="text-sm text-gray-600 mb-3">Superpowers skills activate automatically based on context. Test it by asking Claude to help plan a feature:</p>
 		<Terminal
 			command="Help me plan a user authentication system for my app"
