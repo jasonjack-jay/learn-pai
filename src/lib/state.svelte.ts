@@ -55,21 +55,12 @@ export const modules: Module[] = [
 		estimatedMinutes: 5
 	},
 	{
-		id: 'superpowers',
-		title: 'Superpowers',
-		description: 'Give Claude Code structured development superpowers',
-		tier: 'foundation',
-		slug: 'foundation/superpowers',
-		order: 4,
-		estimatedMinutes: 8
-	},
-	{
 		id: 'what-is-pai',
 		title: 'What is PAI?',
 		description: 'The three levels of AI evolution and where PAI fits in',
 		tier: 'foundation',
 		slug: 'foundation/what-is-pai',
-		order: 5,
+		order: 4,
 		estimatedMinutes: 5
 	},
 	{
@@ -78,7 +69,7 @@ export const modules: Module[] = [
 		description: 'What changes when you add PAI on top of Claude Code',
 		tier: 'foundation',
 		slug: 'foundation/pai-vs-claude',
-		order: 6,
+		order: 5,
 		estimatedMinutes: 5
 	},
 	{
@@ -87,7 +78,7 @@ export const modules: Module[] = [
 		description: 'A visual tour of the ideas that guide PAI\'s design',
 		tier: 'foundation',
 		slug: 'foundation/principles',
-		order: 7,
+		order: 6,
 		estimatedMinutes: 8
 	},
 	{
@@ -96,8 +87,17 @@ export const modules: Module[] = [
 		description: 'Get PAI running on your machine step by step',
 		tier: 'foundation',
 		slug: 'foundation/installation',
-		order: 8,
+		order: 7,
 		estimatedMinutes: 10
+	},
+	{
+		id: 'superpowers',
+		title: 'Superpowers',
+		description: 'Give Claude Code structured development superpowers',
+		tier: 'foundation',
+		slug: 'foundation/superpowers',
+		order: 8,
+		estimatedMinutes: 8
 	},
 
 	// Tier 2 — Path A: Know Me

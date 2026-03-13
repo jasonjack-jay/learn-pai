@@ -4,9 +4,19 @@
 	import Callout from '$lib/components/Callout.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
+	import { getProfile } from '$lib/state.svelte';
 
 	let skillsGroup = $state({ active: 'brainstorming' });
 	let installGroup = $state({ active: 'install-step' });
+
+	const profile = getProfile();
+	const nextSlug = $derived(
+		profile.interests.length > 0
+			? profile.interests[0] === 'know-me' ? 'know-me/telos-intro'
+			: profile.interests[0] === 'get-things-done' ? 'get-things-done/skills-overview'
+			: 'architecture/nine-primitives'
+			: null
+	);
 </script>
 
 <ModuleLayout
@@ -14,7 +24,7 @@
 	title="Superpowers"
 	description="Give Claude Code structured development superpowers"
 	estimatedMinutes={8}
-	nextSlug="foundation/what-is-pai"
+	nextSlug={nextSlug}
 >
 
 <DiagramImage
@@ -23,15 +33,19 @@
 	caption="With great power comes great development discipline"
 />
 
+<h2>Wait — why are we talking about a plugin?</h2>
+
+<p>Good question. You just installed PAI, and now we're veering into a Claude Code plugin? Here's the thing: <strong>if you write software, Superpowers and PAI are a powerful combination</strong>. PAI gives Claude context about you and your goals. Superpowers gives it a disciplined development process. Together, they turn Claude Code into something genuinely impressive.</p>
+
+<Callout type="info">
+	<p><strong>Not a developer?</strong> No problem — mark this lesson complete and move on. Superpowers is specifically for software development workflows. Everything else in PAI works beautifully without it.</p>
+</Callout>
+
 <h2>What is Superpowers?</h2>
 
 <p><a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">Superpowers</a> is an open-source plugin for Claude Code (and other AI coding agents) that transforms it from a freeform code generator into a <strong>structured, disciplined development partner</strong>. It's one of the most popular Claude Code extensions with over 81,000 GitHub stars.</p>
 
 <p>Without Superpowers, Claude Code will happily dive straight into writing code the moment you ask. With Superpowers, it follows a deliberate process: <strong>clarify the problem first, plan the approach, write tests before code, review the results, and learn from the outcome</strong>.</p>
-
-<Callout type="info">
-	<p>Superpowers is optional — Claude Code works fine without it. But if you're building anything more complex than a quick script, the structured workflow will save you from the "it works but it's a mess" trap.</p>
-</Callout>
 
 <h2>Install Superpowers</h2>
 

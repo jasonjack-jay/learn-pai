@@ -3,17 +3,6 @@
 	import Terminal from '$lib/components/Terminal.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
-	import { getProfile } from '$lib/state.svelte';
-
-	const profile = getProfile();
-	// Determine next slug based on user's first chosen path
-	const nextSlug = $derived(
-		profile.interests.length > 0
-			? profile.interests[0] === 'know-me' ? 'know-me/telos-intro'
-			: profile.interests[0] === 'get-things-done' ? 'get-things-done/skills-overview'
-			: 'architecture/nine-primitives'
-			: null
-	);
 </script>
 
 <ModuleLayout
@@ -21,7 +10,7 @@
 	title="Installing PAI"
 	description="Get PAI running on your machine step by step"
 	estimatedMinutes={10}
-	nextSlug={nextSlug}
+	nextSlug="foundation/superpowers"
 >
 
 <h2>Prerequisites</h2>
