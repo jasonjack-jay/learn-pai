@@ -14,7 +14,7 @@
 	title="Git Basics"
 	description="The six concepts you need — Claude Code handles the rest"
 	estimatedMinutes={6}
-	nextSlug="foundation/what-is-pai"
+	nextSlug="foundation/claude-code"
 >
 
 <DiagramImage

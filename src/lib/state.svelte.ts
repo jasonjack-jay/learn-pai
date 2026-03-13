@@ -46,12 +46,21 @@ export const modules: Module[] = [
 		estimatedMinutes: 6
 	},
 	{
+		id: 'claude-code',
+		title: 'Installing Claude Code',
+		description: 'Get Claude Code running in your terminal in under five minutes',
+		tier: 'foundation',
+		slug: 'foundation/claude-code',
+		order: 3,
+		estimatedMinutes: 5
+	},
+	{
 		id: 'what-is-pai',
 		title: 'What is PAI?',
 		description: 'The three levels of AI evolution and where PAI fits in',
 		tier: 'foundation',
 		slug: 'foundation/what-is-pai',
-		order: 3,
+		order: 4,
 		estimatedMinutes: 5
 	},
 	{
@@ -60,7 +69,7 @@ export const modules: Module[] = [
 		description: 'What changes when you add PAI on top of Claude Code',
 		tier: 'foundation',
 		slug: 'foundation/pai-vs-claude',
-		order: 4,
+		order: 5,
 		estimatedMinutes: 5
 	},
 	{
@@ -69,7 +78,7 @@ export const modules: Module[] = [
 		description: 'A visual tour of the ideas that guide PAI\'s design',
 		tier: 'foundation',
 		slug: 'foundation/principles',
-		order: 5,
+		order: 6,
 		estimatedMinutes: 8
 	},
 	{
@@ -78,7 +87,7 @@ export const modules: Module[] = [
 		description: 'Get PAI running on your machine step by step',
 		tier: 'foundation',
 		slug: 'foundation/installation',
-		order: 6,
+		order: 7,
 		estimatedMinutes: 10
 	},
 
