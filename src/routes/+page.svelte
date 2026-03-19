@@ -59,10 +59,10 @@
 						class="w-16 h-16 mx-auto mb-4"
 					/>
 					<h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-ink)">
-						Learn PAI
+						A Guide to Using AI
 					</h1>
 					<p class="text-lg text-gray-500 max-w-lg mx-auto leading-relaxed">
-						Turn Claude from a chatbot into a persistent, learning assistant that knows your goals, remembers your preferences, and gets better over time.
+						Get set up with AI tooling, learn to vibe code, or go deep with Personal AI Infrastructure.
 					</p>
 				</div>
 
