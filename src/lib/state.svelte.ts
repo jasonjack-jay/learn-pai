@@ -2,6 +2,10 @@
 
 export type PathId = 'know-me' | 'get-things-done' | 'architecture';
 export type TierId = 'foundation' | 'core' | 'intermediate' | 'advanced';
+export type StreamId = 'developer' | 'vibe-coder' | 'pai-learner';
+
+// Foundation modules excluded for PAI learners
+const PAI_LEARNER_EXCLUDED_MODULES = new Set(['git-basics', 'superpowers', 'bmad']);
 
 export interface Module {
 	id: string;
@@ -17,6 +21,7 @@ export interface Module {
 
 export interface UserProfile {
 	techLevel: 'beginner' | 'intermediate' | 'advanced' | null;
+	stream: StreamId | null;
 	interests: PathId[];
 	completedModules: Set<string>;
 	visitedModules: Set<string>;
@@ -331,6 +336,7 @@ function saveToStorage(profile: UserProfile) {
 const stored = loadFromStorage();
 let _profile = $state<UserProfile>({
 	techLevel: stored.techLevel ?? null,
+	stream: (stored as any).stream ?? null,
 	interests: stored.interests ?? [],
 	completedModules: stored.completedModules ?? new Set(),
 	visitedModules: stored.visitedModules ?? new Set(),
@@ -354,6 +360,16 @@ export function toggleInterest(path: PathId) {
 	} else {
 		_profile.interests = [..._profile.interests, path];
 	}
+	saveToStorage(_profile);
+}
+
+export function setStream(stream: StreamId) {
+	_profile.stream = stream;
+	// Vibe coders and PAI learners get all three paths auto-selected
+	if (stream === 'vibe-coder' || stream === 'pai-learner') {
+		_profile.interests = ['know-me', 'get-things-done', 'architecture'];
+	}
+	_profile.quizCompleted = true;
 	saveToStorage(_profile);
 }
 
@@ -381,6 +397,7 @@ export function setCurrentModule(id: string | null) {
 
 export function resetProgress() {
 	_profile.techLevel = null;
+	_profile.stream = null;
 	_profile.interests = [];
 	_profile.completedModules = new Set();
 	_profile.visitedModules = new Set();
@@ -395,8 +412,11 @@ export function getModulesForPath(pathId: PathId): Module[] {
 	return modules.filter((m) => m.path === pathId).sort((a, b) => a.order - b.order);
 }
 
-export function getFoundationModules(): Module[] {
-	return modules.filter((m) => m.tier === 'foundation').sort((a, b) => a.order - b.order);
+export function getFoundationModules(stream?: StreamId | null): Module[] {
+	return modules
+		.filter((m) => m.tier === 'foundation')
+		.filter((m) => stream === 'pai-learner' ? !PAI_LEARNER_EXCLUDED_MODULES.has(m.id) : true)
+		.sort((a, b) => a.order - b.order);
 }
 
 export function isModuleUnlocked(mod: Module, completed: Set<string>): boolean {
@@ -411,8 +431,8 @@ export function getProgressForPath(pathId: PathId, completed: Set<string>): numb
 	return Math.round((done / pathModules.length) * 100);
 }
 
-export function getFoundationProgress(completed: Set<string>): number {
-	const fMods = getFoundationModules();
+export function getFoundationProgress(completed: Set<string>, stream?: StreamId | null): number {
+	const fMods = getFoundationModules(stream);
 	if (fMods.length === 0) return 0;
 	const done = fMods.filter((m) => completed.has(m.id)).length;
 	return Math.round((done / fMods.length) * 100);

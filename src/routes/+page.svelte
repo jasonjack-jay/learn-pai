@@ -1,24 +1,55 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { getProfile, setTechLevel, completeQuiz } from '$lib/state.svelte';
+	import { setStream, setTechLevel, completeQuiz } from '$lib/state.svelte';
+	import type { StreamId } from '$lib/state.svelte';
 
-	const profile = getProfile();
+	const streams: { id: StreamId; icon: string; title: string; description: string }[] = [
+		{
+			id: 'developer',
+			icon: '</>',
+			title: 'Developer Setup',
+			description: 'Get your AI tooling set up in 10 minutes. Consistent setup across the team.'
+		},
+		{
+			id: 'vibe-coder',
+			icon: '~',
+			title: 'Learn to Vibe Code',
+			description: 'From terminal basics to building with AI agents. The full learning path.'
+		},
+		{
+			id: 'pai-learner',
+			icon: 'PAI',
+			title: 'Learn PAI',
+			description: 'Understand Personal AI Infrastructure — what it is, how to use it, how it works.'
+		}
+	];
+
 	let step = $state(0);
+
+	function selectStream(stream: StreamId) {
+		setStream(stream);
+		if (stream === 'developer') {
+			goto(`${base}/setup`);
+		} else if (stream === 'vibe-coder') {
+			step = 1;
+		} else {
+			goto(`${base}/learn/foundation/what-is-pai`);
+		}
+	}
 
 	function selectLevel(level: 'beginner' | 'intermediate' | 'advanced') {
 		setTechLevel(level);
 		completeQuiz();
-		goto(`${base}/paths`);
+		goto(`${base}/learn/foundation/terminal-basics`);
 	}
 </script>
 
 <div class="min-h-screen flex flex-col" style="background: var(--color-surface)">
-	<!-- Hero -->
 	<div class="flex-1 flex items-center justify-center px-6 py-16">
 		<div class="max-w-2xl w-full">
 			{#if step === 0}
-				<div class="text-center mb-12" >
+				<div class="text-center mb-12">
 					<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6" style="background: var(--color-accent-light); color: var(--color-accent)">
 						Based on PAI v4.0.3
 					</div>
@@ -36,46 +67,33 @@
 				</div>
 
 				<div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
-					<h2 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-6">What is PAI?</h2>
+					<h2 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-6">I want to...</h2>
 
-					<div class="space-y-4 mb-8">
-						<div class="flex items-start gap-4 p-4 rounded-xl bg-gray-50">
-							<div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: #e5e7eb; color: #6b7280">1</div>
-							<div>
-								<p class="font-medium text-sm">Chatbots</p>
-								<p class="text-sm text-gray-500">Ask → Answer → Forget. No memory, no context.</p>
-							</div>
-						</div>
-						<div class="flex items-start gap-4 p-4 rounded-xl bg-gray-50">
-							<div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: #dbeafe; color: #2563eb">2</div>
-							<div>
-								<p class="font-medium text-sm">Agentic Platforms (Claude Code)</p>
-								<p class="text-sm text-gray-500">Ask → Use tools → Get result. Powerful, but still stateless.</p>
-							</div>
-						</div>
-						<div class="flex items-start gap-4 p-4 rounded-xl" style="background: var(--color-accent-light)">
-							<div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent); color: white">3</div>
-							<div>
-								<p class="font-medium text-sm" style="color: var(--color-accent)">PAI</p>
-								<p class="text-sm text-gray-600">Observe → Think → Plan → Execute → Verify → Learn → Improve. It knows you, learns, and gets better.</p>
-							</div>
-						</div>
+					<div class="space-y-3">
+						{#each streams as stream}
+							<button
+								class="w-full text-left p-5 rounded-xl border border-gray-200 hover:border-gray-300 transition-all cursor-pointer group hover:shadow-sm"
+								onclick={() => selectStream(stream.id)}
+							>
+								<div class="flex items-start gap-4">
+									<div class="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold shrink-0" style="background: var(--color-accent-light); color: var(--color-accent)">
+										{stream.icon}
+									</div>
+									<div>
+										<p class="font-medium text-sm group-hover:text-blue-600 transition-colors">{stream.title}</p>
+										<p class="text-sm text-gray-500 mt-1">{stream.description}</p>
+									</div>
+								</div>
+							</button>
+						{/each}
 					</div>
-
-					<button
-						class="w-full py-3 px-6 rounded-xl text-white font-medium text-sm transition-all hover:opacity-90 cursor-pointer"
-						style="background: var(--color-accent)"
-						onclick={() => step = 1}
-					>
-						Start learning
-					</button>
 				</div>
 
 				<p class="text-center text-xs text-gray-400 mt-6">
 					Free and open source. Based on <a href="https://github.com/danielmiessler/Personal_AI_Infrastructure" class="underline hover:text-gray-500" target="_blank" rel="noopener">danielmiessler/Personal_AI_Infrastructure</a>.
 				</p>
 			{:else}
-				<!-- Tech level quiz -->
+				<!-- Tech level quiz (vibe coders only) -->
 				<div class="text-center mb-8">
 					<h2 class="text-2xl font-bold tracking-tight mb-2" style="color: var(--color-ink)">How technical are you?</h2>
 					<p class="text-gray-500">This helps us calibrate explanations to your level.</p>

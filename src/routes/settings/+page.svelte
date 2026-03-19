@@ -1,10 +1,24 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { getProfile, resetProgress } from '$lib/state.svelte';
+	import { getProfile, resetProgress, setStream } from '$lib/state.svelte';
+	import type { StreamId } from '$lib/state.svelte';
 
 	const profile = getProfile();
 	let confirming = $state(false);
+
+	const streamLabels: Record<StreamId, string> = {
+		'developer': 'Developer Setup',
+		'vibe-coder': 'Learn to Vibe Code',
+		'pai-learner': 'Learn PAI'
+	};
+
+	function changeStream(stream: StreamId) {
+		setStream(stream);
+		if (stream === 'developer') {
+			goto(`${base}/setup`);
+		}
+	}
 
 	function handleReset() {
 		resetProgress();
@@ -15,6 +29,22 @@
 <div class="max-w-2xl mx-auto px-6 py-16">
 	<h1 class="text-2xl font-bold tracking-tight mb-1" style="color: var(--color-ink)">Settings</h1>
 	<p class="text-sm text-gray-500 mb-10">Manage your Learn PAI experience.</p>
+
+	<section class="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+		<h2 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Learning Stream</h2>
+		<p class="text-sm text-gray-500 mb-4">Current: <span class="font-medium text-gray-900">{profile.stream ? streamLabels[profile.stream] : 'Not set'}</span></p>
+		<div class="flex flex-wrap gap-2">
+			{#each (['developer', 'vibe-coder', 'pai-learner'] as StreamId[]) as stream}
+				<button
+					class="px-4 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer {profile.stream === stream ? 'text-white' : 'text-gray-600 bg-gray-100 hover:bg-gray-200'}"
+					style="{profile.stream === stream ? 'background: var(--color-accent)' : ''}"
+					onclick={() => changeStream(stream)}
+				>
+					{streamLabels[stream]}
+				</button>
+			{/each}
+		</div>
+	</section>
 
 	<section class="bg-white rounded-xl border border-gray-200 p-6">
 		<h2 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Progress</h2>

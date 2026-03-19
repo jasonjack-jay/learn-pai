@@ -10,7 +10,8 @@
 
 	const currentPath = $derived($page.url.pathname);
 	const isReferencePage = $derived(currentPath.includes('/terminal-reference') || currentPath.includes('/git-reference'));
-	const showSidebar = $derived(profile.quizCompleted && !isReferencePage && currentPath !== `${base}/` && currentPath !== base);
+	const isSetupPage = $derived(currentPath.includes('/setup'));
+	const showSidebar = $derived(profile.quizCompleted && !isReferencePage && !isSetupPage && profile.stream !== 'developer' && currentPath !== `${base}/` && currentPath !== base);
 </script>
 
 <svelte:head>
@@ -37,7 +38,7 @@
 	<!-- Sidebar -->
 	<aside class="fixed lg:sticky top-0 left-0 h-screen w-72 bg-white border-r border-gray-200 overflow-y-auto z-40 transition-transform duration-200 {sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}">
 		<div class="p-5">
-			<a href="{base}/paths" class="block mb-6">
+			<a href="{base}/" class="block mb-6">
 				<span class="text-lg font-semibold tracking-tight" style="color: var(--color-ink)">Learn PAI</span>
 				<span class="block text-xs text-gray-400 mt-0.5">Personal AI Infrastructure</span>
 			</a>
@@ -46,13 +47,13 @@
 			<div class="mb-6">
 				<div class="flex items-center justify-between mb-2">
 					<h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400">Foundation</h3>
-					<span class="text-xs text-gray-400">{getFoundationProgress(profile.completedModules)}%</span>
+					<span class="text-xs text-gray-400">{getFoundationProgress(profile.completedModules, profile.stream)}%</span>
 				</div>
 				<div class="h-1 bg-gray-100 rounded-full mb-3">
-					<div class="h-1 rounded-full transition-all duration-300" style="background: var(--color-accent); width: {getFoundationProgress(profile.completedModules)}%"></div>
+					<div class="h-1 rounded-full transition-all duration-300" style="background: var(--color-accent); width: {getFoundationProgress(profile.completedModules, profile.stream)}%"></div>
 				</div>
 				<ul class="space-y-1">
-					{#each getFoundationModules() as mod}
+					{#each getFoundationModules(profile.stream) as mod}
 						{@const unlocked = isModuleUnlocked(mod, profile.completedModules)}
 						{@const completed = profile.completedModules.has(mod.id)}
 						{@const active = currentPath.includes(mod.slug)}
