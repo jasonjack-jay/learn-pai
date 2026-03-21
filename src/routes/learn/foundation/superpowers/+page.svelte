@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
+	import ClaudePrompt from '$lib/components/ClaudePrompt.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
@@ -52,9 +53,9 @@
 
 	<Accordion number={1} title="Verify it's working" subtitle="Ask Claude to plan something" defaultOpen={true} group={installGroup} id="install-step">
 		<p class="text-sm text-gray-600 mb-3">Superpowers skills activate automatically based on context. Test it by asking Claude to help plan a feature:</p>
-		<Terminal
-			command="Help me plan a user authentication system for my app"
-			output="Using brainstorming skill to refine requirements...
+		<ClaudePrompt
+			prompt="Help me plan a user authentication system for my app"
+			response="Using brainstorming skill to refine requirements...
 
 Before we start building, let me understand what you need:
 1. What kind of authentication? (email/password, OAuth, magic links?)
@@ -111,9 +112,9 @@ Before we start building, let me understand what you need:
 
 	<Accordion number={4} title="Test-Driven Development" subtitle="RED-GREEN-REFACTOR — tests before implementation" group={skillsGroup} id="tdd">
 		<p class="text-sm text-gray-600 mb-3">The most impactful skill. Enforces the classic TDD cycle: write a failing test first (RED), write the minimum code to pass it (GREEN), then clean up (REFACTOR). This means every piece of code has a test from the moment it exists. No more "I'll add tests later" — later never comes.</p>
-		<Terminal
-			command="Add a function that validates email addresses"
-			output="Using test-driven-development skill...
+		<ClaudePrompt
+			prompt="Add a function that validates email addresses"
+			response="Using test-driven-development skill...
 
 Step 1 (RED): Writing test for email validation...
 ✗ test_valid_email — FAIL (function not yet implemented)

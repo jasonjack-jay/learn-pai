@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
 	import Terminal from '$lib/components/Terminal.svelte';
+	import ClaudePrompt from '$lib/components/ClaudePrompt.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
@@ -84,14 +85,31 @@
 
 <h2>Verify it works</h2>
 
-<p>If you can run <code>claude</code> in your terminal and see the welcome screen, you're good. Try a quick test:</p>
+<p>If you can run <code>claude</code> in your terminal and see the welcome screen, you're good.</p>
 
-<Terminal
-	command="claude 'what is 2 + 2?'"
-	output="2 + 2 = 4"
+<ClaudePrompt
+	prompt="how many chucks must a wood chuck chuck if a wood chuck could chuck wood?"
+	response="A woodchuck would chuck as much wood as a woodchuck could chuck wood — which, according to a Cornell wildlife biologist, is roughly 700 pounds."
 	title="Quick sanity check"
 />
 
 <p>If that works, Claude Code is installed and authenticated. You're ready to install PAI.</p>
+
+<h2>Advanced options</h2>
+
+<p>Claude has a lot of useful command line options. You may not need these right now, but good to know for later.</p>
+
+<Terminal
+	command="claude -p --model haiku --effort low 'what is 2 + 2?'"
+	output="4"
+	title="The -p flag prints the result straight to your terminal"
+/>
+
+<p>To see the complete set of command line options:</p>
+
+<Terminal
+	command="claude --help"
+	title="Terminal"
+/>
 
 </ModuleLayout>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import ModuleLayout from '$lib/components/ModuleLayout.svelte';
-	import Terminal from '$lib/components/Terminal.svelte';
+	import ClaudePrompt from '$lib/components/ClaudePrompt.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
@@ -50,9 +50,9 @@
 			caption="Clone: transplanting an entire project to your machine"
 		/>
 		<p class="text-sm text-gray-600 mb-3">When someone shares a project on GitHub, you <strong>clone</strong> it to get your own copy on your computer. It downloads all the files and their entire history. This is how you'll get PAI — by cloning its repository.</p>
-		<Terminal
-			command="Ask Claude Code: clone the PAI repository"
-			output="I'll clone it for you.
+		<ClaudePrompt
+			prompt="clone the PAI repository"
+			response="I'll clone it for you.
 git clone https://github.com/danielmiessler/Personal_AI_Infrastructure.git
 Cloning into 'Personal_AI_Infrastructure'... done."
 			title="Claude Code handles it"
@@ -81,9 +81,9 @@ Cloning into 'Personal_AI_Infrastructure'... done."
 				<p class="font-mono text-xs text-green-600">Remove deprecated API calls</p>
 			</div>
 		</div>
-		<Terminal
-			command="Ask Claude Code: commit my changes"
-			output="I'll review what changed and create a commit.
+		<ClaudePrompt
+			prompt="commit my changes"
+			response="I'll review what changed and create a commit.
 
 Looking at your changes... you've updated the homepage copy
 and fixed two broken links.
@@ -104,9 +104,9 @@ Done. Changes committed."
 		/>
 		<p class="text-sm text-gray-600 mb-3">A <strong>branch</strong> is a parallel version of your project. You create one when you want to try something without risking your working code. If the experiment works, you merge it back. If it doesn't, you delete the branch and nothing is lost.</p>
 		<p class="text-sm text-gray-600 mb-3">Every project has a main branch (usually called <code>main</code>). That's the "official" version. Everything else branches off from it.</p>
-		<Terminal
-			command="Ask Claude Code: create a branch for the new feature"
-			output="I'll create a new branch for you.
+		<ClaudePrompt
+			prompt="create a branch for the new feature"
+			response="I'll create a new branch for you.
 git checkout -b add-search-feature
 Switched to a new branch 'add-search-feature'
 
@@ -124,9 +124,9 @@ Any changes you make won't affect main."
 		/>
 		<p class="text-sm text-gray-600 mb-3"><strong>Push</strong> sends your commits from your computer up to GitHub (or wherever the project lives online). <strong>Pull</strong> brings other people's changes down to your computer. It's how you stay in sync.</p>
 		<p class="text-sm text-gray-600 mb-3">If you're working alone, pushing is like backing up your work to the cloud. If you're on a team, it's how everyone shares progress.</p>
-		<Terminal
-			command="Ask Claude Code: push my changes to GitHub"
-			output="Pushing your branch to GitHub...
+		<ClaudePrompt
+			prompt="push my changes to GitHub"
+			response="Pushing your branch to GitHub...
 git push origin add-search-feature
 Done. Your changes are now on GitHub."
 			title="Push to share, pull to sync"
@@ -140,9 +140,9 @@ Done. Your changes are now on GitHub."
 			caption="Merge: combining parallel work back into one"
 		/>
 		<p class="text-sm text-gray-600 mb-3">When your branch is ready, you <strong>merge</strong> it back into main. Git takes the changes from your branch and combines them with main. If two people changed the same line, Git will flag a <strong>conflict</strong> and ask you to decide which version to keep.</p>
-		<Terminal
-			command="Ask Claude Code: merge my branch into main"
-			output="Switching to main and merging your branch.
+		<ClaudePrompt
+			prompt="merge my branch into main"
+			response="Switching to main and merging your branch.
 git checkout main
 git merge add-search-feature
 Merge successful. Your search feature is now part of main.
