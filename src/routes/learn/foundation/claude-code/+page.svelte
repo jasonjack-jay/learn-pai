@@ -95,7 +95,18 @@
 
 <p>If that works, Claude Code is installed and authenticated. You're ready to install PAI.</p>
 
-<h2>Advanced options</h2>
+<h2>Controlling Claude</h2>
+
+<p>To access Claude's built-in commands, start typing with a <code>/</code>. You'll see them appear underneath. Tip: use the arrow keys to scroll through the list.</p>
+
+<ClaudePrompt
+	prompt="/status"
+	response="Session: active | Model: Sonnet 4.6 | Context: 12% used
+Cost: $0.03 this session"
+	title="Claude Code"
+/>
+
+<h2>Command line options</h2>
 
 <p>Claude has a lot of useful command line options. You may not need these right now, but good to know for later.</p>
 
