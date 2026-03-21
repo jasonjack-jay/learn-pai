@@ -1,4 +1,7 @@
 <script lang="ts">
+	import CopyableCommand from '$lib/components/CopyableCommand.svelte';
+	import CopyableLine from '$lib/components/CopyableLine.svelte';
+
 	function printPage() {
 		window.print();
 	}
@@ -39,11 +42,11 @@
 				<h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 pb-2 border-b border-gray-200">Setup (one-time)</h2>
 				<table class="w-full text-sm">
 					<tbody class="divide-y divide-gray-100">
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git --version</td><td class="py-1.5 text-gray-600">Check Git is installed</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git config --global<br>  user.name "Name"</td><td class="py-1.5 text-gray-600">Set your name</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git config --global<br>  user.email "you@…"</td><td class="py-1.5 text-gray-600">Set your email</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git init</td><td class="py-1.5 text-gray-600">Start a new repo in current folder</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git clone &lt;url&gt;</td><td class="py-1.5 text-gray-600">Download an existing repo</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git --version" /></td><td class="py-1.5 text-gray-600">Check Git is installed</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text='git config --global user.name "Name"' /></td><td class="py-1.5 text-gray-600">Set your name</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text='git config --global user.email "you@…"' /></td><td class="py-1.5 text-gray-600">Set your email</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git init" /></td><td class="py-1.5 text-gray-600">Start a new repo in current folder</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git clone <url>" /></td><td class="py-1.5 text-gray-600">Download an existing repo</td></tr>
 					</tbody>
 				</table>
 			</section>
@@ -53,12 +56,12 @@
 				<h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 pb-2 border-b border-gray-200">Daily Workflow</h2>
 				<table class="w-full text-sm">
 					<tbody class="divide-y divide-gray-100">
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git status</td><td class="py-1.5 text-gray-600">See what's changed</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git add file</td><td class="py-1.5 text-gray-600">Stage a specific file</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git add .</td><td class="py-1.5 text-gray-600">Stage all changes</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git commit -m "msg"</td><td class="py-1.5 text-gray-600">Commit with message</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git diff</td><td class="py-1.5 text-gray-600">See unstaged changes</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git diff --staged</td><td class="py-1.5 text-gray-600">See staged changes</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git status" /></td><td class="py-1.5 text-gray-600">See what's changed</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git add file" /></td><td class="py-1.5 text-gray-600">Stage a specific file</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git add ." /></td><td class="py-1.5 text-gray-600">Stage all changes</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text='git commit -m "msg"' /></td><td class="py-1.5 text-gray-600">Commit with message</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git diff" /></td><td class="py-1.5 text-gray-600">See unstaged changes</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git diff --staged" /></td><td class="py-1.5 text-gray-600">See staged changes</td></tr>
 					</tbody>
 				</table>
 			</section>
@@ -68,11 +71,11 @@
 				<h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 pb-2 border-b border-gray-200">Branches</h2>
 				<table class="w-full text-sm">
 					<tbody class="divide-y divide-gray-100">
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git branch</td><td class="py-1.5 text-gray-600">List local branches</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git checkout -b name</td><td class="py-1.5 text-gray-600">Create and switch to new branch</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git checkout name</td><td class="py-1.5 text-gray-600">Switch to an existing branch</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git merge name</td><td class="py-1.5 text-gray-600">Merge a branch into current branch</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git branch -d name</td><td class="py-1.5 text-gray-600">Delete a merged branch</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git branch" /></td><td class="py-1.5 text-gray-600">List local branches</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git checkout -b name" /></td><td class="py-1.5 text-gray-600">Create and switch to new branch</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git checkout name" /></td><td class="py-1.5 text-gray-600">Switch to an existing branch</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git merge name" /></td><td class="py-1.5 text-gray-600">Merge a branch into current branch</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git branch -d name" /></td><td class="py-1.5 text-gray-600">Delete a merged branch</td></tr>
 					</tbody>
 				</table>
 			</section>
@@ -82,11 +85,11 @@
 				<h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 pb-2 border-b border-gray-200">History & Remote</h2>
 				<table class="w-full text-sm">
 					<tbody class="divide-y divide-gray-100">
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git log --oneline</td><td class="py-1.5 text-gray-600">Compact commit history</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git log --graph --all</td><td class="py-1.5 text-gray-600">Visual branch history</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git push origin main</td><td class="py-1.5 text-gray-600">Push commits to remote</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git pull</td><td class="py-1.5 text-gray-600">Fetch and merge remote changes</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git fetch</td><td class="py-1.5 text-gray-600">Download changes without merging</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git log --oneline" /></td><td class="py-1.5 text-gray-600">Compact commit history</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git log --graph --all" /></td><td class="py-1.5 text-gray-600">Visual branch history</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git push origin main" /></td><td class="py-1.5 text-gray-600">Push commits to remote</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git pull" /></td><td class="py-1.5 text-gray-600">Fetch and merge remote changes</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git fetch" /></td><td class="py-1.5 text-gray-600">Download changes without merging</td></tr>
 					</tbody>
 				</table>
 			</section>
@@ -96,12 +99,12 @@
 				<h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 pb-2 border-b border-gray-200">Undoing Things</h2>
 				<table class="w-full text-sm">
 					<tbody class="divide-y divide-gray-100">
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git restore file</td><td class="py-1.5 text-gray-600">Discard unstaged changes</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git restore --staged file</td><td class="py-1.5 text-gray-600">Unstage a file</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git reset --soft HEAD~1</td><td class="py-1.5 text-gray-600">Undo last commit, keep changes</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git revert &lt;hash&gt;</td><td class="py-1.5 text-gray-600">Safely undo a past commit</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git stash</td><td class="py-1.5 text-gray-600">Temporarily set aside changes</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 text-xs whitespace-nowrap">git stash pop</td><td class="py-1.5 text-gray-600">Restore stashed changes</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git restore file" /></td><td class="py-1.5 text-gray-600">Discard unstaged changes</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git restore --staged file" /></td><td class="py-1.5 text-gray-600">Unstage a file</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git reset --soft HEAD~1" /></td><td class="py-1.5 text-gray-600">Undo last commit, keep changes</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git revert <hash>" /></td><td class="py-1.5 text-gray-600">Safely undo a past commit</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git stash" /></td><td class="py-1.5 text-gray-600">Temporarily set aside changes</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="git stash pop" /></td><td class="py-1.5 text-gray-600">Restore stashed changes</td></tr>
 					</tbody>
 				</table>
 			</section>
@@ -131,10 +134,20 @@
 		<div class="mt-6 p-4 rounded-xl border border-gray-200 bg-gray-50 print:border print:border-gray-300 break-inside-avoid">
 			<h3 class="text-sm font-semibold text-gray-800 mb-3">Core workflow — Modify → Stage → Commit</h3>
 			<div class="font-mono text-sm text-gray-700 space-y-1">
-				<div><span class="text-green-600">$</span> git status <span class="text-gray-400 font-sans text-xs">← always check first</span></div>
-				<div><span class="text-green-600">$</span> git add .</div>
-				<div><span class="text-green-600">$</span> git commit -m <span class="text-orange-600">"Describe what and why"</span></div>
-				<div class="mt-2"><span class="text-green-600">$</span> git checkout -b feature-name <span class="text-gray-400 font-sans text-xs">← new branch for each feature</span></div>
+				<CopyableLine command="git status">
+					<span class="text-green-600">$</span> git status <span class="text-gray-400 font-sans text-xs">← always check first</span>
+				</CopyableLine>
+				<CopyableLine command="git add .">
+					<span class="text-green-600">$</span> git add .
+				</CopyableLine>
+				<CopyableLine command='git commit -m "Describe what and why"'>
+					<span class="text-green-600">$</span> git commit -m <span class="text-orange-600">"Describe what and why"</span>
+				</CopyableLine>
+				<div class="mt-2">
+					<CopyableLine command="git checkout -b feature-name">
+						<span class="text-green-600">$</span> git checkout -b feature-name <span class="text-gray-400 font-sans text-xs">← new branch for each feature</span>
+					</CopyableLine>
+				</div>
 			</div>
 		</div>
 

@@ -1,4 +1,7 @@
 <script lang="ts">
+	import CopyableCommand from '$lib/components/CopyableCommand.svelte';
+	import CopyableLine from '$lib/components/CopyableLine.svelte';
+
 	function printPage() {
 		window.print();
 	}
@@ -39,13 +42,13 @@
 				<h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 pb-2 border-b border-gray-200">Navigation</h2>
 				<table class="w-full text-sm">
 					<tbody class="divide-y divide-gray-100">
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">pwd</td><td class="py-1.5 text-gray-600">Show current directory</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">ls</td><td class="py-1.5 text-gray-600">List files and folders</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">ls -la</td><td class="py-1.5 text-gray-600">List all, including hidden files</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">cd dirname</td><td class="py-1.5 text-gray-600">Enter a directory</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">cd ..</td><td class="py-1.5 text-gray-600">Go up one level</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">cd ~</td><td class="py-1.5 text-gray-600">Go to home directory</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">cd -</td><td class="py-1.5 text-gray-600">Go to previous directory</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="pwd" /></td><td class="py-1.5 text-gray-600">Show current directory</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="ls" /></td><td class="py-1.5 text-gray-600">List files and folders</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="ls -la" /></td><td class="py-1.5 text-gray-600">List all, including hidden files</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="cd dirname" /></td><td class="py-1.5 text-gray-600">Enter a directory</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="cd .." /></td><td class="py-1.5 text-gray-600">Go up one level</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="cd ~" /></td><td class="py-1.5 text-gray-600">Go to home directory</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="cd -" /></td><td class="py-1.5 text-gray-600">Go to previous directory</td></tr>
 					</tbody>
 				</table>
 			</section>
@@ -55,13 +58,13 @@
 				<h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 pb-2 border-b border-gray-200">Files & Folders</h2>
 				<table class="w-full text-sm">
 					<tbody class="divide-y divide-gray-100">
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">mkdir name</td><td class="py-1.5 text-gray-600">Create a directory</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">mkdir -p a/b/c</td><td class="py-1.5 text-gray-600">Create nested directories</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">cat file</td><td class="py-1.5 text-gray-600">Print file contents</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">cp src dst</td><td class="py-1.5 text-gray-600">Copy a file</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">mv src dst</td><td class="py-1.5 text-gray-600">Move or rename a file</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">rm file</td><td class="py-1.5 text-gray-600 text-orange-600 font-medium">Delete file — permanent, no undo</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">rm -r folder</td><td class="py-1.5 text-orange-600 font-medium">Delete folder recursively</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="mkdir name" /></td><td class="py-1.5 text-gray-600">Create a directory</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="mkdir -p a/b/c" /></td><td class="py-1.5 text-gray-600">Create nested directories</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="cat file" /></td><td class="py-1.5 text-gray-600">Print file contents</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="cp src dst" /></td><td class="py-1.5 text-gray-600">Copy a file</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="mv src dst" /></td><td class="py-1.5 text-gray-600">Move or rename a file</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="rm file" /></td><td class="py-1.5 text-orange-600 font-medium">Delete file — permanent, no undo</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="rm -r folder" /></td><td class="py-1.5 text-orange-600 font-medium">Delete folder recursively</td></tr>
 					</tbody>
 				</table>
 			</section>
@@ -71,10 +74,10 @@
 				<h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 pb-2 border-b border-gray-200">Utilities</h2>
 				<table class="w-full text-sm">
 					<tbody class="divide-y divide-gray-100">
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">clear</td><td class="py-1.5 text-gray-600">Clear the screen (or ⌘K)</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">open .</td><td class="py-1.5 text-gray-600">Open current folder in Finder</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">open file</td><td class="py-1.5 text-gray-600">Open a file with its default app</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">history</td><td class="py-1.5 text-gray-600">Show recent commands</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="clear" /></td><td class="py-1.5 text-gray-600">Clear the screen (or ⌘K)</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="open ." /></td><td class="py-1.5 text-gray-600">Open current folder in Finder</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="open file" /></td><td class="py-1.5 text-gray-600">Open a file with its default app</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="history" /></td><td class="py-1.5 text-gray-600">Show recent commands</td></tr>
 						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">↑ / ↓</td><td class="py-1.5 text-gray-600">Cycle through command history</td></tr>
 						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">Tab</td><td class="py-1.5 text-gray-600">Autocomplete file/folder names</td></tr>
 						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">Ctrl + C</td><td class="py-1.5 text-gray-600">Stop a running command</td></tr>
@@ -90,9 +93,9 @@
 						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">~</td><td class="py-1.5 text-gray-600">Shortcut for your home folder</td></tr>
 						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">.</td><td class="py-1.5 text-gray-600">The current directory</td></tr>
 						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">..</td><td class="py-1.5 text-gray-600">The parent directory</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">cmd1 && cmd2</td><td class="py-1.5 text-gray-600">Run cmd2 only if cmd1 succeeds</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">ls -lh</td><td class="py-1.5 text-gray-600">Human-readable file sizes</td></tr>
-						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">man command</td><td class="py-1.5 text-gray-600">Read the manual for any command</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="cmd1 && cmd2" /></td><td class="py-1.5 text-gray-600">Run cmd2 only if cmd1 succeeds</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="ls -lh" /></td><td class="py-1.5 text-gray-600">Human-readable file sizes</td></tr>
+						<tr><td class="py-1.5 pr-4"><CopyableCommand text="man command" /></td><td class="py-1.5 text-gray-600">Read the manual for any command</td></tr>
 						<tr><td class="py-1.5 pr-4 font-mono text-gray-800 whitespace-nowrap">.zshrc</td><td class="py-1.5 text-gray-600">Your shell config — runs on startup</td></tr>
 					</tbody>
 				</table>
@@ -104,11 +107,21 @@
 		<div class="mt-6 p-4 rounded-xl border border-gray-200 bg-gray-50 print:border print:border-gray-300 break-inside-avoid">
 			<h3 class="text-sm font-semibold text-gray-800 mb-2">Your dev workspace setup</h3>
 			<div class="font-mono text-sm text-gray-700 space-y-1">
-				<div><span class="text-green-600">$</span> mkdir ~/dev</div>
-				<div><span class="text-green-600">$</span> cd ~/dev</div>
-				<div><span class="text-green-600">$</span> mkdir my-first-test-project</div>
-				<div><span class="text-green-600">$</span> cd my-first-test-project</div>
-				<div><span class="text-green-600">$</span> pwd <span class="text-gray-400 font-sans">→ /Users/yourname/dev/my-first-test-project</span></div>
+				<CopyableLine command="mkdir ~/dev">
+					<span class="text-green-600">$</span> mkdir ~/dev
+				</CopyableLine>
+				<CopyableLine command="cd ~/dev">
+					<span class="text-green-600">$</span> cd ~/dev
+				</CopyableLine>
+				<CopyableLine command="mkdir my-first-test-project">
+					<span class="text-green-600">$</span> mkdir my-first-test-project
+				</CopyableLine>
+				<CopyableLine command="cd my-first-test-project">
+					<span class="text-green-600">$</span> cd my-first-test-project
+				</CopyableLine>
+				<CopyableLine command="pwd">
+					<span class="text-green-600">$</span> pwd <span class="text-gray-400 font-sans">→ /Users/yourname/dev/my-first-test-project</span>
+				</CopyableLine>
 			</div>
 		</div>
 
