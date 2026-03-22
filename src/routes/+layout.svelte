@@ -1,12 +1,17 @@
 <script lang="ts">
 	import '../app.css';
 	import { base } from '$app/paths';
-	import { getProfile, getFoundationModules, getModulesForPath, paths, streamMeta, isModuleUnlocked, getFoundationProgress, getProgressForPath } from '$lib/state.svelte';
+	import { getProfile, getFoundationModules, getModulesForPath, paths, streamMeta, isModuleUnlocked, getFoundationProgress, getProgressForPath, getTheme } from '$lib/state.svelte';
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	let { children } = $props();
 	const profile = getProfile();
 	let sidebarOpen = $state(false);
+
+	onMount(() => {
+		document.documentElement.setAttribute('data-theme', getTheme());
+	});
 
 	const currentPath = $derived($page.url.pathname);
 	const isReferencePage = $derived(currentPath.includes('/terminal-reference') || currentPath.includes('/git-reference'));

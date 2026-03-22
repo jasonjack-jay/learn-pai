@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { getProfile, resetProgress, setStream } from '$lib/state.svelte';
-	import type { StreamId } from '$lib/state.svelte';
+	import { getProfile, resetProgress, setStream, getTheme, setTheme } from '$lib/state.svelte';
+	import type { StreamId, Theme } from '$lib/state.svelte';
 
 	const profile = getProfile();
 	let confirming = $state(false);
@@ -29,6 +29,34 @@
 <div class="max-w-2xl mx-auto px-6 py-16">
 	<h1 class="text-2xl font-bold tracking-tight mb-1" style="color: var(--color-ink)">Settings</h1>
 	<p class="text-sm text-gray-500 mb-10">Manage your Learn PAI experience.</p>
+
+	<section class="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+		<h2 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Appearance</h2>
+		<div class="flex items-center justify-between">
+			<div>
+				<p class="text-sm font-medium" style="color: var(--color-ink)">Theme</p>
+				<p class="text-sm text-gray-500 mt-0.5">Switch between light and dark mode.</p>
+			</div>
+			<div class="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+				<button
+					class="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md transition-colors cursor-pointer {getTheme() === 'light' ? 'bg-white shadow-sm' : 'text-gray-500 hover:text-gray-700'}"
+					style="{getTheme() === 'light' ? 'color: var(--color-ink)' : ''}"
+					onclick={() => setTheme('light')}
+				>
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+					Light
+				</button>
+				<button
+					class="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md transition-colors cursor-pointer {getTheme() === 'dark' ? 'bg-white shadow-sm' : 'text-gray-500 hover:text-gray-700'}"
+					style="{getTheme() === 'dark' ? 'color: var(--color-ink)' : ''}"
+					onclick={() => setTheme('dark')}
+				>
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+					Dark
+				</button>
+			</div>
+		</div>
+	</section>
 
 	<section class="bg-white rounded-xl border border-gray-200 p-6 mb-6">
 		<h2 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Learning Stream</h2>

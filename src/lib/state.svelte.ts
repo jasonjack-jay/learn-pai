@@ -1,5 +1,6 @@
 // Central app state using Svelte 5 runes
 
+export type Theme = 'light' | 'dark';
 export type PathId = 'know-me' | 'get-things-done' | 'architecture';
 export type TierId = 'foundation' | 'core' | 'intermediate' | 'advanced';
 export type StreamId = 'developer' | 'vibe-coder' | 'pai-learner';
@@ -512,6 +513,36 @@ export function markVisited(id: string) {
 export function setCurrentModule(id: string | null) {
 	_profile.currentModule = id;
 	saveToStorage(_profile);
+}
+
+// ─── Theme ────────────────────────────────────────────────────
+const THEME_KEY = 'learn-pai-theme';
+
+function loadTheme(): Theme {
+	if (typeof window === 'undefined') return 'light';
+	try {
+		const stored = localStorage.getItem(THEME_KEY);
+		if (stored === 'dark' || stored === 'light') return stored;
+	} catch {}
+	return 'light';
+}
+
+let _theme = $state<Theme>(loadTheme());
+
+export function getTheme(): Theme {
+	return _theme;
+}
+
+export function setTheme(theme: Theme) {
+	_theme = theme;
+	if (typeof window !== 'undefined') {
+		localStorage.setItem(THEME_KEY, theme);
+		document.documentElement.setAttribute('data-theme', theme);
+	}
+}
+
+export function toggleTheme() {
+	setTheme(_theme === 'light' ? 'dark' : 'light');
 }
 
 export function resetProgress() {
