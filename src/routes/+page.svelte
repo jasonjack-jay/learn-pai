@@ -34,14 +34,14 @@
 		} else if (stream === 'vibe-coder') {
 			step = 1;
 		} else {
-			goto(`${base}/learn/foundation/what-is-pai`);
+			goto(`${base}/learn/foundation/introduction`);
 		}
 	}
 
 	function selectLevel(level: 'beginner' | 'intermediate' | 'advanced') {
 		setTechLevel(level);
 		completeQuiz();
-		goto(`${base}/learn/foundation/terminal-basics`);
+		goto(`${base}/learn/foundation/introduction`);
 	}
 </script>
 

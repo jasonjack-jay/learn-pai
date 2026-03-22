@@ -13,7 +13,7 @@
 
 	function proceed() {
 		if (profile.interests.length === 0) return;
-		goto(`${base}/learn/foundation/what-is-pai`);
+		goto(`${base}/learn/foundation/introduction`);
 	}
 </script>
 

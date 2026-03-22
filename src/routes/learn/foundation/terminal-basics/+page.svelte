@@ -11,7 +11,7 @@
 <ModuleLayout
 	moduleId="terminal-basics"
 	title="Terminal Basics"
-	description="Get comfortable with the place where PAI lives"
+	description="Get comfortable with the place where PAI and Claude Code (and Superpowers and BMAD and ...) live"
 	estimatedMinutes={7}
 >
 
@@ -26,6 +26,10 @@
 <p>PAI lives in the terminal. So does Claude Code. When you use PAI, you're typing in a terminal window — not clicking buttons in a web app. That's actually a good thing: text is fast, scriptable, and powerful in ways that GUIs (Graphical User Interfaces) can't match.</p>
 
 <p>You don't need to become a terminal expert. You need to be comfortable enough to open it, get to the right place, and let Claude Code take over from there. That's what this lesson covers.</p>
+
+<Callout type="info">
+	<p><strong>Wait — I saw Claude Code in the Claude Desktop app!</strong> Claude Code lives in more than one place. The original version, and still the most powerful, lives in the terminal. That's the one PAI uses, and the one we'll be working with throughout this course.</p>
+</Callout>
 
 <Callout type="tip">
 	<p>If you already live in the terminal, mark this complete and move on. The only thing worth checking is the workspace setup at the end.</p>

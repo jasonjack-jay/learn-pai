@@ -47,26 +47,36 @@ export interface UserProfile {
 export const modules: Module[] = [
 	// Tier 1 — Foundation
 	{
+		id: 'introduction',
+		title: 'Introduction',
+		description: 'Welcome and what to expect from this course',
+		tier: 'foundation',
+		slug: 'foundation/introduction',
+		order: 1,
+		estimatedMinutes: 2
+	},
+	{
 		id: 'what-is-pai',
 		title: 'What is PAI?',
 		description: 'The three levels of AI evolution and where PAI fits in',
 		tier: 'foundation',
 		slug: 'foundation/what-is-pai',
-		order: 1,
+		order: 2,
 		estimatedMinutes: 5,
-		streamOrder: { 'vibe-coder': 4 },
+		prerequisiteIds: ['introduction'],
+		streamOrder: { 'vibe-coder': 5 },
 		streamPrerequisiteIds: { 'vibe-coder': ['claude-code'] }
 	},
 	{
 		id: 'terminal-basics',
 		title: 'Terminal Basics',
-		description: 'Get comfortable with the place where PAI lives',
+		description: 'Get comfortable with the place where PAI and Claude Code (and Superpowers and BMAD and ...) live',
 		tier: 'foundation',
 		slug: 'foundation/terminal-basics',
-		order: 2,
+		order: 3,
 		estimatedMinutes: 7,
 		prerequisiteIds: ['what-is-pai'],
-		streamOrder: { 'vibe-coder': 1 }
+		streamOrder: { 'vibe-coder': 2 }
 	},
 	{
 		id: 'git-basics',
@@ -74,11 +84,11 @@ export const modules: Module[] = [
 		description: 'The six concepts you need — Claude Code handles the rest',
 		tier: 'foundation',
 		slug: 'foundation/git-basics',
-		order: 3,
+		order: 4,
 		estimatedMinutes: 6,
 		prerequisiteIds: ['terminal-basics'],
 		streams: ['vibe-coder'],
-		streamOrder: { 'vibe-coder': 2 }
+		streamOrder: { 'vibe-coder': 3 }
 	},
 	{
 		id: 'claude-code',
@@ -86,10 +96,10 @@ export const modules: Module[] = [
 		description: 'Get Claude Code running in your terminal in under five minutes',
 		tier: 'foundation',
 		slug: 'foundation/claude-code',
-		order: 4,
+		order: 5,
 		estimatedMinutes: 5,
 		prerequisiteIds: ['terminal-basics'],
-		streamOrder: { 'vibe-coder': 3 }
+		streamOrder: { 'vibe-coder': 4 }
 	},
 	{
 		id: 'install-bun',
@@ -97,7 +107,7 @@ export const modules: Module[] = [
 		description: 'The fast JavaScript runtime that PAI depends on',
 		tier: 'foundation',
 		slug: 'foundation/install-bun',
-		order: 5,
+		order: 6,
 		estimatedMinutes: 3,
 		prerequisiteIds: ['claude-code']
 	},
@@ -107,7 +117,7 @@ export const modules: Module[] = [
 		description: 'What changes when you add PAI on top of Claude Code',
 		tier: 'foundation',
 		slug: 'foundation/pai-vs-claude',
-		order: 6,
+		order: 7,
 		estimatedMinutes: 5,
 		prerequisiteIds: ['install-bun']
 	},
@@ -117,7 +127,7 @@ export const modules: Module[] = [
 		description: 'A visual tour of the ideas that guide PAI\'s design',
 		tier: 'foundation',
 		slug: 'foundation/principles',
-		order: 7,
+		order: 8,
 		estimatedMinutes: 8,
 		prerequisiteIds: ['pai-vs-claude']
 	},
@@ -127,7 +137,7 @@ export const modules: Module[] = [
 		description: 'Get PAI running on your machine step by step',
 		tier: 'foundation',
 		slug: 'foundation/installation',
-		order: 8,
+		order: 9,
 		estimatedMinutes: 10,
 		prerequisiteIds: ['principles-overview']
 	},
@@ -137,7 +147,7 @@ export const modules: Module[] = [
 		description: 'Give Claude Code structured development superpowers',
 		tier: 'foundation',
 		slug: 'foundation/superpowers',
-		order: 9,
+		order: 10,
 		estimatedMinutes: 8,
 		prerequisiteIds: ['installation'],
 		streams: ['vibe-coder']
@@ -148,7 +158,7 @@ export const modules: Module[] = [
 		description: 'A full agile development team, powered by AI agents',
 		tier: 'foundation',
 		slug: 'foundation/bmad',
-		order: 10,
+		order: 11,
 		estimatedMinutes: 10,
 		prerequisiteIds: ['installation'],
 		streams: ['vibe-coder']
