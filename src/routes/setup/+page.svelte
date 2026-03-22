@@ -15,31 +15,36 @@
 			name: 'Claude Code',
 			description: 'AI coding assistant that runs in your terminal',
 			url: 'https://code.claude.com/docs/en/quickstart',
-			verify: 'claude --version'
+			verify: 'claude --version',
+			inClaudeCode: false
 		},
 		{
 			name: 'Bun',
 			description: 'Fast JavaScript runtime, bundler, and package manager',
 			url: 'https://bun.com/docs/installation',
-			verify: 'bun --version'
+			verify: 'bun --version',
+			inClaudeCode: false
 		},
 		{
 			name: 'PAI (Personal AI Infrastructure)',
 			description: 'Persistent, learning AI layer on top of Claude Code',
 			url: 'https://github.com/danielmiessler/Personal_AI_Infrastructure/tree/main/Releases',
-			verify: 'ls ~/.claude/PAI/'
+			verify: 'ls ~/.claude/PAI/',
+			inClaudeCode: false
 		},
 		{
 			name: 'Superpowers',
 			description: 'Structured development skills for Claude Code',
 			url: 'https://github.com/obra/superpowers?tab=readme-ov-file#installation',
-			verify: '/using-superpowers (run inside Claude Code)'
+			verify: '/using-superpowers',
+			inClaudeCode: true
 		},
 		{
 			name: 'BMAD Method',
 			description: 'AI-powered agile development agents. Install per-project — run in the folder you want to use it in.',
 			url: 'https://docs.bmad-method.org/how-to/install-bmad/',
-			verify: '/bmad-help (run inside Claude Code)'
+			verify: '/bmad-help',
+			inClaudeCode: true
 		}
 	];
 </script>
@@ -96,12 +101,15 @@
 								</a>
 							</div>
 							<p class="text-sm text-gray-500 mb-3">{tool.description}</p>
+							{#if tool.inClaudeCode}
+								<div class="text-xs text-gray-400 mb-1">Type this inside Claude Code</div>
+							{/if}
 							<button
 								onclick={() => copyVerify(tool.verify, i)}
 								class="w-full flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-50 font-mono text-sm cursor-pointer hover:bg-gray-100 transition-colors text-left group"
 								title="Copy to clipboard"
 							>
-								<span class="text-green-600">$</span>
+								<span class="{tool.inClaudeCode ? 'text-blue-400' : 'text-green-600'}">{tool.inClaudeCode ? '›' : '$'}</span>
 								<span class="text-gray-700 flex-1">{tool.verify}</span>
 								{#if copiedIndex === i}
 									<span class="flex items-center gap-1 text-xs text-green-500 font-sans">
