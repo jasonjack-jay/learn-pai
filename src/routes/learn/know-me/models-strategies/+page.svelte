@@ -8,7 +8,6 @@
 	title="Models & Strategies"
 	description="Your mental models and how you approach problems"
 	estimatedMinutes={10}
-	nextSlug="know-me/narratives-ideas"
 >
 
 <h2>MODELS.md — How you think</h2>

@@ -153,7 +153,7 @@
 
 		<!-- GUI clients -->
 		<div class="mt-4 p-4 rounded-xl border border-gray-200 bg-gray-50 print:border print:border-gray-300 break-inside-avoid">
-			<h3 class="text-sm font-semibold text-gray-800 mb-2">Recommended GUI clients for Mac</h3>
+			<h3 class="text-sm font-semibold text-gray-800 mb-2">Recommended GUI (Graphical User Interface) clients for Mac</h3>
 			<div class="grid grid-cols-3 gap-3 text-xs text-gray-600">
 				<div><strong class="text-gray-800">Tower</strong> — Best overall (paid, $69/yr). tower.app</div>
 				<div><strong class="text-gray-800">GitKraken</strong> — Great for teams (freemium). gitkraken.com</div>

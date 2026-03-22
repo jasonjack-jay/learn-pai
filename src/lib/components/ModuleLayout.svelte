@@ -2,26 +2,25 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { completeModule, markVisited, getProfile } from '$lib/state.svelte';
+	import { completeModule, markVisited, getProfile, getNextModuleSlug } from '$lib/state.svelte';
 
 	let {
 		moduleId,
 		title,
 		description,
 		estimatedMinutes,
-		nextSlug = null,
 		children
 	}: {
 		moduleId: string;
 		title: string;
 		description: string;
 		estimatedMinutes: number;
-		nextSlug?: string | null;
 		children: any;
 	} = $props();
 
 	const profile = getProfile();
 	const isCompleted = $derived(profile.completedModules.has(moduleId));
+	const nextSlug = $derived(getNextModuleSlug(moduleId, profile.stream, profile.interests));
 
 	onMount(() => {
 		markVisited(moduleId);

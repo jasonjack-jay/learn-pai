@@ -8,7 +8,6 @@
 	title="Narratives, Ideas & Challenges"
 	description="Your stories, spark list, and current obstacles"
 	estimatedMinutes={10}
-	nextSlug="know-me/context-in-action"
 >
 
 <h2>NARRATIVES.md — Your story</h2>

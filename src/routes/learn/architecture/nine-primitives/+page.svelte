@@ -4,7 +4,7 @@
 	import Terminal from '$lib/components/Terminal.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
-<ModuleLayout moduleId="nine-primitives" title="The 9 Primitives" description="The building blocks of PAI's architecture" estimatedMinutes={10} nextSlug="architecture/user-system">
+<ModuleLayout moduleId="nine-primitives" title="The 9 Primitives" description="The building blocks of PAI's architecture" estimatedMinutes={10}>
 <h2>Architecture building blocks</h2>
 <p>PAI is built on 9 core primitives — modular components that each handle one aspect of making AI personal and persistent. Unlike monolithic AI tools, each primitive is independently useful and replaceable. Let's walk through each one and why it matters.</p>
 

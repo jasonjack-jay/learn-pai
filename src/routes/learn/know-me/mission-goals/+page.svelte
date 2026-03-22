@@ -9,7 +9,6 @@
 	title="Mission & Goals"
 	description="Writing your MISSION.md and GOALS.md — your North Star"
 	estimatedMinutes={12}
-	nextSlug="know-me/projects-beliefs"
 >
 
 <h2>MISSION.md — Your "why"</h2>

@@ -5,7 +5,6 @@
 	import Callout from '$lib/components/Callout.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
-
 	let termGroup = $state({ active: 'pwd' });
 </script>
 
@@ -14,7 +13,6 @@
 	title="Terminal Basics"
 	description="Get comfortable with the place where PAI lives"
 	estimatedMinutes={7}
-	nextSlug="foundation/git-basics"
 >
 
 <DiagramImage
@@ -25,7 +23,7 @@
 
 <h2>Why the terminal matters</h2>
 
-<p>PAI lives in the terminal. So does Claude Code. When you use PAI, you're typing in a terminal window — not clicking buttons in a web app. That's actually a good thing: text is fast, scriptable, and powerful in ways that GUIs can't match.</p>
+<p>PAI lives in the terminal. So does Claude Code. When you use PAI, you're typing in a terminal window — not clicking buttons in a web app. That's actually a good thing: text is fast, scriptable, and powerful in ways that GUIs (Graphical User Interfaces) can't match.</p>
 
 <p>You don't need to become a terminal expert. You need to be comfortable enough to open it, get to the right place, and let Claude Code take over from there. That's what this lesson covers.</p>
 

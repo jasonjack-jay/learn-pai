@@ -14,7 +14,6 @@
 	title="Superpowers"
 	description="Give Claude Code structured development superpowers"
 	estimatedMinutes={8}
-	nextSlug="foundation/bmad"
 >
 
 <DiagramImage

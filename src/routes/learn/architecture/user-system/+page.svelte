@@ -4,7 +4,7 @@
 	import Terminal from '$lib/components/Terminal.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
-<ModuleLayout moduleId="user-system-split" title="USER/ vs SYSTEM/" description="How PAI keeps your customizations safe during upgrades" estimatedMinutes={6} nextSlug="architecture/algorithm">
+<ModuleLayout moduleId="user-system-split" title="USER/ vs SYSTEM/" description="How PAI keeps your customizations safe during upgrades" estimatedMinutes={6}>
 <h2>Two worlds, cleanly separated</h2>
 <p>Inside <code>~/.claude/PAI/</code>, PAI maintains two directories that never interfere with each other. This is one of the most important architectural decisions in PAI — it's what makes the system both upgradeable and deeply personal.</p>
 

@@ -10,7 +10,6 @@
 	title="PAI vs Plain Claude Code"
 	description="What changes when you add PAI on top of Claude Code"
 	estimatedMinutes={5}
-	nextSlug="foundation/principles"
 >
 
 <h2>Same engine, completely different experience</h2>

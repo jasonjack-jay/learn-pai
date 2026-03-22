@@ -10,7 +10,6 @@
 	title="What is PAI?"
 	description="The three levels of AI evolution and where PAI fits in"
 	estimatedMinutes={5}
-	nextSlug="foundation/pai-vs-claude"
 >
 
 <h2>AI has been evolving in stages</h2>

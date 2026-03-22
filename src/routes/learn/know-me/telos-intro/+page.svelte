@@ -9,7 +9,6 @@
 	title="Meet TELOS"
 	description="The 10 files that teach AI who you are"
 	estimatedMinutes={6}
-	nextSlug="know-me/mission-goals"
 >
 
 <h2>The problem with context</h2>

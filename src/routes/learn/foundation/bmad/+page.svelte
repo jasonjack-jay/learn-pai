@@ -4,20 +4,9 @@
 	import Callout from '$lib/components/Callout.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
-	import { getProfile } from '$lib/state.svelte';
-
 	let agentsGroup = $state({ active: 'analyst' });
 	let workflowGroup = $state({ active: 'analysis' });
 	let extrasGroup = $state({ active: 'party-mode' });
-
-	const profile = getProfile();
-	const nextSlug = $derived(
-		profile.interests.length > 0
-			? profile.interests[0] === 'know-me' ? 'know-me/telos-intro'
-			: profile.interests[0] === 'get-things-done' ? 'get-things-done/skills-overview'
-			: 'architecture/nine-primitives'
-			: null
-	);
 </script>
 
 <ModuleLayout
@@ -25,7 +14,6 @@
 	title="The BMAD Method"
 	description="A full agile development team, powered by AI agents"
 	estimatedMinutes={10}
-	nextSlug={nextSlug}
 >
 
 <DiagramImage

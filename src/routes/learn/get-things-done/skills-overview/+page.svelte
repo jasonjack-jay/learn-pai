@@ -10,7 +10,6 @@
 	title="The Skills System"
 	description="63 skills across 13 categories — your AI toolkit"
 	estimatedMinutes={8}
-	nextSlug="get-things-done/skill-hierarchy"
 >
 
 <h2>What are skills?</h2>

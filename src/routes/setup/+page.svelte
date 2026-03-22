@@ -1,6 +1,15 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 
+	let copiedIndex = $state(-1);
+
+	function copyVerify(text: string, index: number) {
+		navigator.clipboard.writeText(text).then(() => {
+			copiedIndex = index;
+			setTimeout(() => copiedIndex = -1, 2000);
+		});
+	}
+
 	const tools = [
 		{
 			name: 'Claude Code',
@@ -87,11 +96,25 @@
 								</a>
 							</div>
 							<p class="text-sm text-gray-500 mb-3">{tool.description}</p>
-							<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-50 font-mono text-sm">
+							<button
+								onclick={() => copyVerify(tool.verify, i)}
+								class="w-full flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-50 font-mono text-sm cursor-pointer hover:bg-gray-100 transition-colors text-left group"
+								title="Copy to clipboard"
+							>
 								<span class="text-green-600">$</span>
-								<span class="text-gray-700">{tool.verify}</span>
-								<span class="ml-auto text-xs text-gray-400 font-sans">verify it works</span>
-							</div>
+								<span class="text-gray-700 flex-1">{tool.verify}</span>
+								{#if copiedIndex === i}
+									<span class="flex items-center gap-1 text-xs text-green-500 font-sans">
+										<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+										Copied!
+									</span>
+								{:else}
+									<span class="flex items-center gap-1 text-xs text-gray-400 font-sans opacity-0 group-hover:opacity-100 transition-opacity">
+										<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+										Copy
+									</span>
+								{/if}
+							</button>
 						</div>
 					</div>
 				</div>

@@ -4,7 +4,7 @@
 	import Terminal from '$lib/components/Terminal.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
-<ModuleLayout moduleId="first-workflow" title="Your First Workflow" description="Running a real skill-based task from start to finish" estimatedMinutes={12} nextSlug="get-things-done/workflows">
+<ModuleLayout moduleId="first-workflow" title="Your First Workflow" description="Running a real skill-based task from start to finish" estimatedMinutes={12}>
 
 <h2>What you will build</h2>
 

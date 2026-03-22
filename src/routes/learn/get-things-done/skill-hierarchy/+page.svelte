@@ -9,7 +9,6 @@
 	title="The Skill Hierarchy"
 	description="CODE → CLI → PROMPT → SKILL — choosing the right level"
 	estimatedMinutes={8}
-	nextSlug="get-things-done/first-workflow"
 >
 
 <h2>Not everything needs AI</h2>

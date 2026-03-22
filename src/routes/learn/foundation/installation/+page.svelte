@@ -10,7 +10,6 @@
 	title="Installing PAI"
 	description="Get PAI running on your machine step by step"
 	estimatedMinutes={10}
-	nextSlug="foundation/superpowers"
 >
 
 <h2>Prerequisites</h2>
@@ -25,9 +24,7 @@
 
 <p><strong>A terminal</strong> — macOS Terminal, iTerm2, or any Linux terminal. Windows is not currently supported (community contributions welcome).</p>
 
-<Callout type="info">
-	<p>PAI uses <strong>Bun</strong> as its runtime (faster than Node.js). The installer will handle this for you if it's not already installed.</p>
-</Callout>
+<p><strong>Bun</strong> — the JavaScript runtime PAI uses. You installed this in the previous step.</p>
 
 <h2>Step 1: Clone the repository</h2>
 

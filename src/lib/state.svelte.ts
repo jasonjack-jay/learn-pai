@@ -4,9 +4,6 @@ export type PathId = 'know-me' | 'get-things-done' | 'architecture';
 export type TierId = 'foundation' | 'core' | 'intermediate' | 'advanced';
 export type StreamId = 'developer' | 'vibe-coder' | 'pai-learner';
 
-// Foundation modules excluded for PAI learners
-const PAI_LEARNER_EXCLUDED_MODULES = new Set(['git-basics', 'superpowers', 'bmad']);
-
 export interface Module {
 	id: string;
 	title: string;
@@ -17,7 +14,20 @@ export interface Module {
 	order: number;
 	estimatedMinutes: number;
 	prerequisiteIds?: string[];
+	/** Which streams include this module. Omit = all streams. */
+	streams?: StreamId[];
+	/** Per-stream order overrides. If a stream is listed here, use this order instead of `order`. */
+	streamOrder?: Partial<Record<StreamId, number>>;
+	/** Per-stream prerequisite overrides. */
+	streamPrerequisiteIds?: Partial<Record<StreamId, string[]>>;
 }
+
+// Stream display metadata
+export const streamMeta: Record<StreamId, { title: string; subtitle: string }> = {
+	'developer': { title: 'Developer Setup', subtitle: 'AI tooling for your team' },
+	'vibe-coder': { title: 'Learn to Vibe Code', subtitle: 'From zero to building with AI' },
+	'pai-learner': { title: 'Learn PAI', subtitle: 'Personal AI Infrastructure' }
+};
 
 export interface UserProfile {
 	techLevel: 'beginner' | 'intermediate' | 'advanced' | null;
@@ -29,17 +39,34 @@ export interface UserProfile {
 	quizCompleted: boolean;
 }
 
-// All available modules
+// ─── Module definitions ───────────────────────────────────────
+// Order within each tier is controlled by the `order` field.
+// Navigation (next module, sidebar) is computed from the filtered,
+// ordered list — no hardcoded nextSlug needed in page components.
+
 export const modules: Module[] = [
 	// Tier 1 — Foundation
+	{
+		id: 'what-is-pai',
+		title: 'What is PAI?',
+		description: 'The three levels of AI evolution and where PAI fits in',
+		tier: 'foundation',
+		slug: 'foundation/what-is-pai',
+		order: 1,
+		estimatedMinutes: 5,
+		streamOrder: { 'vibe-coder': 4 },
+		streamPrerequisiteIds: { 'vibe-coder': ['claude-code'] }
+	},
 	{
 		id: 'terminal-basics',
 		title: 'Terminal Basics',
 		description: 'Get comfortable with the place where PAI lives',
 		tier: 'foundation',
 		slug: 'foundation/terminal-basics',
-		order: 1,
-		estimatedMinutes: 7
+		order: 2,
+		estimatedMinutes: 7,
+		prerequisiteIds: ['what-is-pai'],
+		streamOrder: { 'vibe-coder': 1 }
 	},
 	{
 		id: 'git-basics',
@@ -47,8 +74,11 @@ export const modules: Module[] = [
 		description: 'The six concepts you need — Claude Code handles the rest',
 		tier: 'foundation',
 		slug: 'foundation/git-basics',
-		order: 2,
-		estimatedMinutes: 6
+		order: 3,
+		estimatedMinutes: 6,
+		prerequisiteIds: ['terminal-basics'],
+		streams: ['vibe-coder'],
+		streamOrder: { 'vibe-coder': 2 }
 	},
 	{
 		id: 'claude-code',
@@ -56,17 +86,20 @@ export const modules: Module[] = [
 		description: 'Get Claude Code running in your terminal in under five minutes',
 		tier: 'foundation',
 		slug: 'foundation/claude-code',
-		order: 3,
-		estimatedMinutes: 5
+		order: 4,
+		estimatedMinutes: 5,
+		prerequisiteIds: ['terminal-basics'],
+		streamOrder: { 'vibe-coder': 3 }
 	},
 	{
-		id: 'what-is-pai',
-		title: 'What is PAI?',
-		description: 'The three levels of AI evolution and where PAI fits in',
+		id: 'install-bun',
+		title: 'Install Bun',
+		description: 'The fast JavaScript runtime that PAI depends on',
 		tier: 'foundation',
-		slug: 'foundation/what-is-pai',
-		order: 4,
-		estimatedMinutes: 5
+		slug: 'foundation/install-bun',
+		order: 5,
+		estimatedMinutes: 3,
+		prerequisiteIds: ['claude-code']
 	},
 	{
 		id: 'pai-vs-claude',
@@ -74,8 +107,9 @@ export const modules: Module[] = [
 		description: 'What changes when you add PAI on top of Claude Code',
 		tier: 'foundation',
 		slug: 'foundation/pai-vs-claude',
-		order: 5,
-		estimatedMinutes: 5
+		order: 6,
+		estimatedMinutes: 5,
+		prerequisiteIds: ['install-bun']
 	},
 	{
 		id: 'principles-overview',
@@ -83,8 +117,9 @@ export const modules: Module[] = [
 		description: 'A visual tour of the ideas that guide PAI\'s design',
 		tier: 'foundation',
 		slug: 'foundation/principles',
-		order: 6,
-		estimatedMinutes: 8
+		order: 7,
+		estimatedMinutes: 8,
+		prerequisiteIds: ['pai-vs-claude']
 	},
 	{
 		id: 'installation',
@@ -92,8 +127,9 @@ export const modules: Module[] = [
 		description: 'Get PAI running on your machine step by step',
 		tier: 'foundation',
 		slug: 'foundation/installation',
-		order: 7,
-		estimatedMinutes: 10
+		order: 8,
+		estimatedMinutes: 10,
+		prerequisiteIds: ['principles-overview']
 	},
 	{
 		id: 'superpowers',
@@ -101,8 +137,10 @@ export const modules: Module[] = [
 		description: 'Give Claude Code structured development superpowers',
 		tier: 'foundation',
 		slug: 'foundation/superpowers',
-		order: 8,
-		estimatedMinutes: 8
+		order: 9,
+		estimatedMinutes: 8,
+		prerequisiteIds: ['installation'],
+		streams: ['vibe-coder']
 	},
 	{
 		id: 'bmad',
@@ -110,8 +148,10 @@ export const modules: Module[] = [
 		description: 'A full agile development team, powered by AI agents',
 		tier: 'foundation',
 		slug: 'foundation/bmad',
-		order: 9,
-		estimatedMinutes: 10
+		order: 10,
+		estimatedMinutes: 10,
+		prerequisiteIds: ['installation'],
+		streams: ['vibe-coder']
 	},
 
 	// Tier 2 — Path A: Know Me
@@ -124,7 +164,7 @@ export const modules: Module[] = [
 		slug: 'know-me/telos-intro',
 		order: 1,
 		estimatedMinutes: 6,
-		prerequisiteIds: ['what-is-pai']
+		prerequisiteIds: ['installation']
 	},
 	{
 		id: 'mission-goals',
@@ -192,7 +232,7 @@ export const modules: Module[] = [
 		slug: 'get-things-done/skills-overview',
 		order: 1,
 		estimatedMinutes: 8,
-		prerequisiteIds: ['what-is-pai']
+		prerequisiteIds: ['installation']
 	},
 	{
 		id: 'skill-hierarchy',
@@ -238,7 +278,7 @@ export const modules: Module[] = [
 		slug: 'architecture/nine-primitives',
 		order: 1,
 		estimatedMinutes: 10,
-		prerequisiteIds: ['what-is-pai']
+		prerequisiteIds: ['installation']
 	},
 	{
 		id: 'user-system-split',
@@ -275,7 +315,8 @@ export const modules: Module[] = [
 	}
 ];
 
-// Path metadata
+// ─── Path metadata ────────────────────────────────────────────
+
 export const paths: Record<PathId, { title: string; tagline: string; icon: string; color: string }> = {
 	'know-me': {
 		title: 'AI That Knows Me',
@@ -297,7 +338,76 @@ export const paths: Record<PathId, { title: string; tagline: string; icon: strin
 	}
 };
 
-// localStorage persistence helpers
+// ─── Module visibility ────────────────────────────────────────
+// A module is visible to a stream if:
+//   - it has no `streams` array (visible to all), OR
+//   - the stream is listed in its `streams` array
+
+function isVisibleToStream(mod: Module, stream?: StreamId | null): boolean {
+	if (!mod.streams) return true;          // no restriction → everyone sees it
+	if (!stream) return true;               // no stream chosen yet → show all
+	return mod.streams.includes(stream);
+}
+
+// ─── Public API ───────────────────────────────────────────────
+
+/** Get the effective order for a module given the current stream. */
+function getEffectiveOrder(mod: Module, stream?: StreamId | null): number {
+	if (stream && mod.streamOrder?.[stream] !== undefined) return mod.streamOrder[stream]!;
+	return mod.order;
+}
+
+/** Get foundation modules visible to the given stream, in order. */
+export function getFoundationModules(stream?: StreamId | null): Module[] {
+	return modules
+		.filter((m) => m.tier === 'foundation')
+		.filter((m) => isVisibleToStream(m, stream))
+		.sort((a, b) => getEffectiveOrder(a, stream) - getEffectiveOrder(b, stream));
+}
+
+/** Get path modules (always visible regardless of stream). */
+export function getModulesForPath(pathId: PathId): Module[] {
+	return modules.filter((m) => m.path === pathId).sort((a, b) => a.order - b.order);
+}
+
+/** Build the complete ordered sequence of modules for navigation.
+ *  Foundation (filtered by stream) → then path modules in interest order. */
+export function getModuleSequence(stream?: StreamId | null, interests: PathId[] = []): Module[] {
+	const foundation = getFoundationModules(stream);
+	const pathModules = interests.flatMap((pathId) => getModulesForPath(pathId));
+	return [...foundation, ...pathModules];
+}
+
+/** Given a module ID, return the slug of the next module in the sequence.
+ *  Returns null if this is the last module. */
+export function getNextModuleSlug(moduleId: string, stream?: StreamId | null, interests: PathId[] = []): string | null {
+	const seq = getModuleSequence(stream, interests);
+	const idx = seq.findIndex((m) => m.id === moduleId);
+	if (idx === -1 || idx >= seq.length - 1) return null;
+	return seq[idx + 1].slug;
+}
+
+export function isModuleUnlocked(mod: Module, completed: Set<string>, stream?: StreamId | null): boolean {
+	const prereqs = (stream && mod.streamPrerequisiteIds?.[stream]) ?? mod.prerequisiteIds;
+	if (!prereqs || prereqs.length === 0) return true;
+	return prereqs.every((id) => completed.has(id));
+}
+
+export function getProgressForPath(pathId: PathId, completed: Set<string>): number {
+	const pathModules = getModulesForPath(pathId);
+	if (pathModules.length === 0) return 0;
+	const done = pathModules.filter((m) => completed.has(m.id)).length;
+	return Math.round((done / pathModules.length) * 100);
+}
+
+export function getFoundationProgress(completed: Set<string>, stream?: StreamId | null): number {
+	const fMods = getFoundationModules(stream);
+	if (fMods.length === 0) return 0;
+	const done = fMods.filter((m) => completed.has(m.id)).length;
+	return Math.round((done / fMods.length) * 100);
+}
+
+// ─── localStorage persistence ─────────────────────────────────
 const STORAGE_KEY = 'learn-pai-profile';
 
 function loadFromStorage(): Partial<UserProfile> {
@@ -332,7 +442,7 @@ function saveToStorage(profile: UserProfile) {
 	}
 }
 
-// Initialise reactive state, hydrating from localStorage if available
+// ─── Reactive state ───────────────────────────────────────────
 const stored = loadFromStorage();
 let _profile = $state<UserProfile>({
 	techLevel: stored.techLevel ?? null,
@@ -365,7 +475,6 @@ export function toggleInterest(path: PathId) {
 
 export function setStream(stream: StreamId) {
 	_profile.stream = stream;
-	// Vibe coders and PAI learners get all three paths auto-selected
 	if (stream === 'vibe-coder' || stream === 'pai-learner') {
 		_profile.interests = ['know-me', 'get-things-done', 'architecture'];
 	}
@@ -406,34 +515,4 @@ export function resetProgress() {
 	if (typeof window !== 'undefined') {
 		localStorage.removeItem(STORAGE_KEY);
 	}
-}
-
-export function getModulesForPath(pathId: PathId): Module[] {
-	return modules.filter((m) => m.path === pathId).sort((a, b) => a.order - b.order);
-}
-
-export function getFoundationModules(stream?: StreamId | null): Module[] {
-	return modules
-		.filter((m) => m.tier === 'foundation')
-		.filter((m) => stream === 'pai-learner' ? !PAI_LEARNER_EXCLUDED_MODULES.has(m.id) : true)
-		.sort((a, b) => a.order - b.order);
-}
-
-export function isModuleUnlocked(mod: Module, completed: Set<string>): boolean {
-	if (!mod.prerequisiteIds || mod.prerequisiteIds.length === 0) return true;
-	return mod.prerequisiteIds.every((id) => completed.has(id));
-}
-
-export function getProgressForPath(pathId: PathId, completed: Set<string>): number {
-	const pathModules = getModulesForPath(pathId);
-	if (pathModules.length === 0) return 0;
-	const done = pathModules.filter((m) => completed.has(m.id)).length;
-	return Math.round((done / pathModules.length) * 100);
-}
-
-export function getFoundationProgress(completed: Set<string>, stream?: StreamId | null): number {
-	const fMods = getFoundationModules(stream);
-	if (fMods.length === 0) return 0;
-	const done = fMods.filter((m) => completed.has(m.id)).length;
-	return Math.round((done / fMods.length) * 100);
 }

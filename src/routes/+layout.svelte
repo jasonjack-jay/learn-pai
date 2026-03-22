@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { base } from '$app/paths';
-	import { getProfile, getFoundationModules, getModulesForPath, paths, isModuleUnlocked, getFoundationProgress, getProgressForPath } from '$lib/state.svelte';
+	import { getProfile, getFoundationModules, getModulesForPath, paths, streamMeta, isModuleUnlocked, getFoundationProgress, getProgressForPath } from '$lib/state.svelte';
 	import { page } from '$app/stores';
 
 	let { children } = $props();
@@ -39,8 +39,8 @@
 	<aside class="fixed lg:sticky top-0 left-0 h-screen w-72 bg-white border-r border-gray-200 overflow-y-auto z-40 transition-transform duration-200 {sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}">
 		<div class="p-5">
 			<a href="{base}/" class="block mb-6">
-				<span class="text-lg font-semibold tracking-tight" style="color: var(--color-ink)">Learn PAI</span>
-				<span class="block text-xs text-gray-400 mt-0.5">Personal AI Infrastructure</span>
+				<span class="text-lg font-semibold tracking-tight" style="color: var(--color-ink)">{profile.stream ? streamMeta[profile.stream].title : 'Learn PAI'}</span>
+				<span class="block text-xs text-gray-400 mt-0.5">{profile.stream ? streamMeta[profile.stream].subtitle : 'Personal AI Infrastructure'}</span>
 			</a>
 
 			<!-- Foundation -->
@@ -54,7 +54,7 @@
 				</div>
 				<ul class="space-y-1">
 					{#each getFoundationModules(profile.stream) as mod}
-						{@const unlocked = isModuleUnlocked(mod, profile.completedModules)}
+						{@const unlocked = isModuleUnlocked(mod, profile.completedModules, profile.stream)}
 						{@const completed = profile.completedModules.has(mod.id)}
 						{@const active = currentPath.includes(mod.slug)}
 						<li>
@@ -94,7 +94,7 @@
 					</div>
 					<ul class="space-y-1">
 						{#each pathModules as mod}
-							{@const unlocked = isModuleUnlocked(mod, profile.completedModules)}
+							{@const unlocked = isModuleUnlocked(mod, profile.completedModules, profile.stream)}
 							{@const completed = profile.completedModules.has(mod.id)}
 							{@const active = currentPath.includes(mod.slug)}
 							<li>

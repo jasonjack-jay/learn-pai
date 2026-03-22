@@ -4,7 +4,7 @@
 	import Terminal from '$lib/components/Terminal.svelte';
 	import DiagramImage from '$lib/components/DiagramImage.svelte';
 </script>
-<ModuleLayout moduleId="the-algorithm" title="The Algorithm v3.6" description="Observe → Think → Plan → Build → Execute → Verify → Learn" estimatedMinutes={12} nextSlug="architecture/how-it-fits">
+<ModuleLayout moduleId="the-algorithm" title="The Algorithm v3.6" description="Observe → Think → Plan → Build → Execute → Verify → Learn" estimatedMinutes={12}>
 <h2>PAI's universal problem-solving method</h2>
 <p>At the heart of PAI is "The Algorithm" — a structured approach to solving any problem. It's based on the scientific method, adapted for AI-assisted work. Unlike ad-hoc prompting where the AI just starts generating, the Algorithm forces PAI to understand before it acts.</p>
 

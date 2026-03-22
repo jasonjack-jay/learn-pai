@@ -8,7 +8,6 @@
 	title="Projects & Beliefs"
 	description="Mapping your current work and core worldview"
 	estimatedMinutes={10}
-	nextSlug="know-me/models-strategies"
 >
 
 <h2>PROJECTS.md — What you're building</h2>
