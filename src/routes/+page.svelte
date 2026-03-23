@@ -25,6 +25,8 @@
 		}
 	];
 
+	const lastUpdated = new Date(__LAST_UPDATED__).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
 	let step = $state(0);
 
 	function selectStream(stream: StreamId) {
@@ -90,6 +92,9 @@
 				</div>
 
 				<p class="text-center text-xs text-gray-400 mt-6">
+					Last updated {lastUpdated}
+				</p>
+				<p class="text-center text-xs text-gray-400 mt-1">
 					Free and open source. Based on <a href="https://github.com/danielmiessler/Personal_AI_Infrastructure" class="underline hover:text-gray-500" target="_blank" rel="noopener">danielmiessler/Personal_AI_Infrastructure</a>.
 				</p>
 			{:else}
