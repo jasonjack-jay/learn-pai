@@ -47,13 +47,24 @@ export interface UserProfile {
 export const modules: Module[] = [
 	// Tier 1 — Foundation
 	{
+		id: 'prerequisites',
+		title: 'Prerequisites',
+		description: 'What you need before you start',
+		tier: 'foundation',
+		slug: 'foundation/prerequisites',
+		order: 0,
+		estimatedMinutes: 2,
+		streams: ['vibe-coder', 'pai-learner']
+	},
+	{
 		id: 'introduction',
 		title: 'Introduction',
 		description: 'Welcome and what to expect from this course',
 		tier: 'foundation',
 		slug: 'foundation/introduction',
 		order: 1,
-		estimatedMinutes: 2
+		estimatedMinutes: 2,
+		streamPrerequisiteIds: { 'vibe-coder': ['prerequisites'], 'pai-learner': ['prerequisites'] }
 	},
 	{
 		id: 'what-is-pai',
