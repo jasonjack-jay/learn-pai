@@ -52,8 +52,19 @@ export const modules: Module[] = [
 		description: 'Welcome and what to expect from this course',
 		tier: 'foundation',
 		slug: 'foundation/introduction',
-		order: 1,
+		order: 0,
 		estimatedMinutes: 2
+	},
+	{
+		id: 'prerequisites',
+		title: 'Prerequisites',
+		description: 'What you need before you start',
+		tier: 'foundation',
+		slug: 'foundation/prerequisites',
+		order: 1,
+		estimatedMinutes: 2,
+		prerequisiteIds: ['introduction'],
+		streams: ['vibe-coder', 'pai-learner']
 	},
 	{
 		id: 'what-is-pai',
@@ -63,7 +74,7 @@ export const modules: Module[] = [
 		slug: 'foundation/what-is-pai',
 		order: 2,
 		estimatedMinutes: 5,
-		prerequisiteIds: ['introduction'],
+		prerequisiteIds: ['prerequisites'],
 		streamOrder: { 'vibe-coder': 5 },
 		streamPrerequisiteIds: { 'vibe-coder': ['claude-code'] }
 	},
