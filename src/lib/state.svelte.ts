@@ -47,24 +47,24 @@ export interface UserProfile {
 export const modules: Module[] = [
 	// Tier 1 — Foundation
 	{
-		id: 'prerequisites',
-		title: 'Prerequisites',
-		description: 'What you need before you start',
-		tier: 'foundation',
-		slug: 'foundation/prerequisites',
-		order: 0,
-		estimatedMinutes: 2,
-		streams: ['vibe-coder', 'pai-learner']
-	},
-	{
 		id: 'introduction',
 		title: 'Introduction',
 		description: 'Welcome and what to expect from this course',
 		tier: 'foundation',
 		slug: 'foundation/introduction',
+		order: 0,
+		estimatedMinutes: 2
+	},
+	{
+		id: 'prerequisites',
+		title: 'Prerequisites',
+		description: 'What you need before you start',
+		tier: 'foundation',
+		slug: 'foundation/prerequisites',
 		order: 1,
 		estimatedMinutes: 2,
-		streamPrerequisiteIds: { 'vibe-coder': ['prerequisites'], 'pai-learner': ['prerequisites'] }
+		prerequisiteIds: ['introduction'],
+		streams: ['vibe-coder', 'pai-learner']
 	},
 	{
 		id: 'what-is-pai',
@@ -74,7 +74,7 @@ export const modules: Module[] = [
 		slug: 'foundation/what-is-pai',
 		order: 2,
 		estimatedMinutes: 5,
-		prerequisiteIds: ['introduction'],
+		prerequisiteIds: ['prerequisites'],
 		streamOrder: { 'vibe-coder': 5 },
 		streamPrerequisiteIds: { 'vibe-coder': ['claude-code'] }
 	},
