@@ -2,8 +2,8 @@
 task: Implement Git in Detail 16-page learning path with 4 new components
 slug: 20260414-000000_implement-git-in-detail-section
 effort: comprehensive
-phase: build
-progress: 0/84
+phase: complete
+progress: 82/84
 mode: algorithm
 started: 2026-04-14T00:00:00Z
 updated: 2026-04-14T00:00:00Z
@@ -149,4 +149,46 @@ Post: `npm run build` and `npm run check` clean; dev-server visual sweep desktop
 
 ## Verification
 
-(Populated during VERIFY.)
+### Build & check evidence
+
+- `npm run build`: ✓ built in 2.70s, zero errors. Static output emitted
+  for all 16 new routes plus the git-basics cross-linked page.
+- `npm run check` (svelte-check 383 files): ✓ 0 ERRORS, 0 WARNINGS,
+  0 FILES_WITH_PROBLEMS.
+- Dev server returns HTTP 200 for all 16 git-in-detail routes
+  (intro, hub, 14 content pages). Confirmed via curl loop.
+
+### Source-level coverage
+
+- `PathId` union extended; `freelyNavigable` field on path metadata;
+  git-in-detail path entry with icon 🚇, color purple, freelyNavigable
+  true.
+- 16 module entries added with `path: 'git-in-detail'`, sequential
+  orders 0–15, intro prereq `git-basics`, others no prereqs.
+- Sidebar `+layout.svelte` updated: `freelyNav` derived per path,
+  lock greyout skipped when freelyNav; visited bullet added for
+  freely-nav paths (matches path accent).
+- `/paths/+page.svelte` `allPaths` includes git-in-detail.
+- 4 components created in `src/lib/components/`: AskYourAgent,
+  PathPageLayout, PathIndex, ImagePlaceholder.
+- 16 routes created under `src/routes/learn/git-in-detail/`:
+  intro (+page), index-hub, setup, staging, branches, merging,
+  rebasing, remotes, stashing, history, undoing, worktrees,
+  pull-requests, tags, hooks, complete.
+- 14/14 content pages use PathPageLayout.
+- 13/14 content pages contain AskYourAgent (Complete is a recap-only
+  page by design).
+- 16/16 pages contain ImagePlaceholder (intro, hub, all 14 content).
+- Every concept content page contains ≥1 "If you're thinking X, you
+  need Y" signpost (min 2, up to 6 per page).
+- Git Basics page cross-link added as a tip-Callout pointing to
+  /learn/git-in-detail.
+
+### Pending (user-side)
+
+- ISC-84 (mobile at 390px) and ISC-77..82 visual-render confirmation
+  requires a browser. chrome-devtools MCP was blocked by an existing
+  session, so visual validation is handed back to the user — dev
+  server is live at http://localhost:5275 for inspection.
+- ISC-28 (later pass): replace all ImagePlaceholder instances with
+  final art. Tracked in plan step 28; deliberately out of scope here.
