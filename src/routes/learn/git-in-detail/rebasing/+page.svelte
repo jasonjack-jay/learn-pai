@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={10}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="Before/after tube-map diagram. Left: messy history with a feature branch looping back and forth around a busy main line. Right: the same work replayed neatly on top of main as a straight line. An alien porter picks commits up off the left diagram and places them tidily on the right."
-		size="large"
+	<DiagramImage
+		src="git-in-detail/rebasing-before-after.png"
+		alt="Poster 'Rebasing — Before & After' showing a tangled messy history on the left (BEFORE) and a clean straight line of feature commits on the right (AFTER), with an alien porter lifting a commit between them"
+		caption="Rebase replays your commits onto a new base."
 	/>
 
 	<h2>What is this?</h2>
@@ -127,9 +128,10 @@
 		order.
 	</p>
 
-	<ImagePlaceholder
-		description="Split panel. Left: the interactive-rebase editor view with 8 commits, several marked 'squash' and one 'reword'. Right: the resulting 3 commits on the branch, each with a clean message. Arrows show the mapping from the left panel to the right."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/rebasing-interactive.png"
+		alt="Poster 'Interactive Rebase' showing an editor view of 8 messy commits on the left and 3 clean commits — Add login form, Add login tests, Refactor login cleanup — on the right, connected by git rebase -i HEAD~8"
+		caption="Squash, reorder, reword — a clean story before PR."
 	/>
 
 	<AskYourAgent

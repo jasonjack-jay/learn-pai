@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={8}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="One central glowing sphere labelled '.git database' in the middle. Multiple tube-map-style folder branches radiating out, each with a different alien working inside: one writing code, one fixing a bug, one reviewing a PR, one running tests. Each folder has a different branch name as a station sign."
-		size="large"
+	<DiagramImage
+		src="git-in-detail/worktrees-radiating.png"
+		alt="Poster 'Worktrees' with a central '.git database (shared)' sphere radiating to four labelled folders — main/, feature/search/, hotfix/login/, review/pr-42/ — each with an alien doing a different task"
+		caption="Multiple folders. One .git. Parallel work."
 	/>
 
 	<h2>What is this?</h2>

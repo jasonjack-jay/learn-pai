@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
 	import { markVisited } from '$lib/state.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 
 	onMount(() => {
 		markVisited('git-in-detail-intro');
@@ -43,9 +43,10 @@
 			[&_ul]:space-y-2 [&_ul]:my-4 [&_ul]:pl-5 [&_ul]:list-disc
 			[&_li]:text-gray-600 [&_li]:leading-relaxed"
 	>
-		<ImagePlaceholder
-			description="Overview diagram — six tube-map lines representing the six pillars of Git (setup, local workflow, branching, syncing, undoing, advanced). Friendly aliens with speech bubbles asking 'wait, what's THAT one?'"
-			size="large"
+		<DiagramImage
+			src="git-in-detail/overview-six-pillars.png"
+			alt="Tube-map poster labelled 'Git in Detail' showing six coloured lines — Setup, Staging, Branching, Syncing, Undoing, Advanced — each with station-name stops, two green aliens asking 'wait, what's THAT one?' at the bottom"
+			caption="Six pillars. One station at a time."
 		/>
 
 		<p>

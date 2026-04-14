@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { markVisited } from '$lib/state.svelte';
 	import PathIndex from '$lib/components/PathIndex.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import type { PathIndexCard } from '$lib/components/PathIndex.svelte';
 
 	onMount(() => {
@@ -183,9 +183,10 @@
 	</header>
 
 	<div class="max-w-3xl">
-		<ImagePlaceholder
-			description="Index/map style — a tube-map legend showing all 14 lines with their colours and brief labels, as if you're standing in front of a station wall map."
-			size="medium"
+		<DiagramImage
+			src="git-in-detail/index-map.png"
+			alt="Station wall map labelled 'Git in Detail — Line Map' listing fourteen numbered coloured tube lines from 1. Setup to 14. Complete"
+			caption="Pick any line. Jump on anywhere."
 		/>
 	</div>
 

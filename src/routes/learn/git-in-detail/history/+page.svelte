@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={10}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="A detective-themed scene: an alien in a deerstalker hat examining a timeline of commits through a magnifying glass. Different commits glow different colours (red for the buggy one, green for ok). Above, a board links clues: file name, line number, author initials, a date stamp."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/history-detective.png"
+		alt="Poster 'Investigating History' showing an alien in a deerstalker hat with a magnifying glass examining a timeline of commits, a cork-board with clues (file name, line number, initials, date), and callouts for git log, git blame, git bisect"
+		caption="Who, when, what, why — history answers."
 	/>
 
 	<h2>What is this?</h2>

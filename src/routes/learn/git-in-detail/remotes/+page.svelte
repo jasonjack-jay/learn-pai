@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={10}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="A 3-node tube-map diagram: your laptop in the middle, 'origin' (your fork on GitHub) on the left, 'upstream' (the original project on GitHub) on the right. Arrows labelled 'fetch', 'push', and 'pull' with tiny cargo containers moving along them. An alien conductor at each station."
-		size="large"
+	<DiagramImage
+		src="git-in-detail/remotes-three-nodes.png"
+		alt="Poster 'Working with Remotes' showing three nodes — origin (your fork), local (your laptop), upstream (the original project) — connected by push, fetch, and pull-request arrows"
+		caption="Fetch first. Push to origin. PR to upstream."
 	/>
 
 	<h2>What is this?</h2>

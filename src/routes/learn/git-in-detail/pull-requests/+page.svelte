@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={10}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="A tube-map assembly-line style diagram showing the PR journey: 'branch' → 'commit' → 'push' → 'open PR' → 'review' → 'address feedback' (loops back) → 'approved' → 'merge' → 'cleanup'. Aliens at each station performing their role: one commits, one reviews with a checklist, one merges with a green button."
-		size="large"
+	<DiagramImage
+		src="git-in-detail/pull-requests-assembly.png"
+		alt="Poster 'Pull Request Lifecycle' showing a horizontal journey across stations — branch, commit, push, open PR, review, address feedback (loops back), approved, merge, cleanup branch — with an alien performing each role"
+		caption="A PR is a conversation about your commits."
 	/>
 
 	<h2>What is this?</h2>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={10}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="Three-zone diagram — 'working directory' (your files, being edited) → 'staging area' (a waiting room) → 'repository' (the commit history). Arrows showing add (left→middle) and commit (middle→right). Aliens or porters at each zone for personality."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/staging-three-zones.png"
+		alt="Poster 'The Three Zones' showing Working Directory → Staging Area → Repository with an alien porter in the middle and arrows labelled git add and git commit"
+		caption="Add moves files right. Commit saves the snapshot."
 	/>
 
 	<h2>What is this?</h2>
@@ -94,9 +95,10 @@
 		<code>git status</code> first.
 	</p>
 
-	<ImagePlaceholder
-		description="Diagram showing three files in the working directory — login.js (green, ready), styles.css (green, ready), debug.log (red, not wanted). A 'git add login.js styles.css' command pulls only the first two into the staging area, leaving debug.log behind on the platform."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/staging-selective-add.png"
+		alt="Poster 'Selective Staging' showing three files on the working-directory platform — login.js and styles.css tagged READY, debug.log tagged NOT WANTED — with git add login.js styles.css moving only the first two to the staging area"
+		caption="Pick what goes in the next commit — nothing else."
 	/>
 
 	<AskYourAgent
@@ -175,9 +177,10 @@
 		</p>
 	</Callout>
 
-	<ImagePlaceholder
-		description="Before/after of two commits side by side. Left: a bad commit labelled 'wip stuff' with a red thumbs-down alien. Right: a good commit labelled 'Fix login crash when email contains + sign' with a green thumbs-up alien. Headline: the commit message is for humans, not git."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/staging-good-vs-bad-commit.png"
+		alt="Poster 'A Good Commit Message' with two cards — BAD showing 'wip stuff' next to a disappointed alien, and GOOD showing 'Fix login crash when email contains + sign' next to a smiling alien"
+		caption="The message is for humans, not Git."
 	/>
 
 	<AskYourAgent

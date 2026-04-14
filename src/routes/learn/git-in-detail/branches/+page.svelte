@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={8}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="A branch visualisation in tube-map style — a main line running straight across, several feature branches forking off and rejoining. A 'HEAD' arrow sticker labelling where you currently are. Each merge point shown as a station."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/branches-overview.png"
+		alt="Poster 'Branches in Depth' showing a main tube line with commits c1–c5, a feature/search branch forking off and rejoining, a fix/login branch below, and a yellow HEAD marker pointing at c5"
+		caption="A branch is just a pointer to a commit."
 	/>
 
 	<h2>What is this?</h2>
@@ -132,9 +133,10 @@
 		AI can do the whole sweep in one go.
 	</p>
 
-	<ImagePlaceholder
-		description="A 'branch graveyard' cleanup scene in tube-map style — many old branches being swept away by a cleaner alien with a dust-broom, a few current ones remaining with little flags that say 'in use'."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/branches-graveyard.png"
+		alt="Poster 'Branch Graveyard' showing faded old branches being swept away by a green alien with a dustpan and broom, while main and feature/search remain with IN USE flags"
+		caption="Delete merged branches. Keep the track clean."
 	/>
 
 	<AskYourAgent

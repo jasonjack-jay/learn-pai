@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={8}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="Tube station ticket booth where a friendly alien explains each setup step as a ticket being stamped: identity, editor, .gitignore, SSH keys. Alternative: a fresh laptop screen with the 'Git setup checklist' visible on it."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/setup-ticket-booth.png"
+		alt="A green alien in a ticket booth stamps four tickets — Name & Email, Default Branch: main, .gitignore, SSH Key — with a checklist of outcomes"
+		caption="Do this once. It pays you back forever."
 	/>
 
 	<h2>What is this?</h2>
@@ -102,9 +103,10 @@
 		</li>
 	</ul>
 
-	<ImagePlaceholder
-		description="A 'settings control panel' diagram: seven off/on toggles for each power setting, each with a tiny screen next to it showing the concrete impact (e.g. push toggle shows 'git push' just working; conflict-style toggle shows a conflict block with a 'BASE' section visible)."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/setup-power-settings.png"
+		alt="A 'Git Power Settings' control-panel poster with seven ON toggles listed: push.autoSetupRemote, fetch.prune, rerere.enabled, diff.algorithm = histogram, commit.verbose, rebase.autoSquash, merge.conflictstyle = zdiff3"
+		caption="Seven toggles. Huge quality-of-life."
 	/>
 
 	<AskYourAgent

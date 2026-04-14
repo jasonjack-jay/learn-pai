@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={8}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="A tube-map station with multiple gates in a line before the train can leave: 'pre-commit: lint', 'pre-commit: typecheck', 'commit-msg: format', 'pre-push: tests'. Each gate has a friendly alien inspector giving a thumbs-up or thumbs-down. A commit attempts to pass through, gets stopped at 'typecheck', the alien points to the error."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/hooks-gates.png"
+		alt="Poster 'Git Hooks — The Gates' showing a tube train labelled COMMIT TRAIN being inspected at four gates — pre-commit: lint, pre-commit: typecheck (stops the train), commit-msg: format, pre-push: tests — between LOCAL REPO and REMOTE REPO"
+		caption="Hooks catch problems before they leave your laptop."
 	/>
 
 	<h2>What is this?</h2>

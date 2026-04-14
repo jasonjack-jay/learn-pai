@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={6}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="A tube-map main line with coloured flags sticking up at specific stations labelled 'v1.0.0', 'v1.1.0', 'v1.1.1', 'v2.0.0'. Off to the side, a small side-scene: an alien lifting a cherry (commit) from one branch and placing it on another — the cherry-pick metaphor made literal."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/tags-flags-cherry.png"
+		alt="Poster 'Tags, Releases & Cherry-Pick' showing a tube line with coloured release flags v1.0.0, v1.1.0, v1.1.1, v2.0.0, a release/2.x branch, and an alien cherry-picking a commit onto it"
+		caption="Tags mark releases. Cherry-pick backports a fix."
 	/>
 
 	<h2>What is this?</h2>

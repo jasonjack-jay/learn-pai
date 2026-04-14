@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={10}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="A single-dial control panel labelled 'THE UNDO SPECTRUM' with five stops around the dial: 'restore' (green), 'revert' (light green), 'reset --soft' (yellow), 'reset --mixed' (orange), 'reset --hard' (red). A friendly alien's hand hovers over the dial; a warning label below reads 'reflog is your safety net'."
-		size="large"
+	<DiagramImage
+		src="git-in-detail/undoing-spectrum-dial.png"
+		alt="Poster 'The Undo Spectrum' showing a dial with five colour-coded positions — restore (green), revert, reset --soft, reset --mixed, reset --hard (red) — and a reminder that git reflog recovers any commit for 90 days"
+		caption="Know which undo you actually want."
 	/>
 
 	<h2>What is this?</h2>

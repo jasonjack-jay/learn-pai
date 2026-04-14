@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={6}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description={`A tube-map station storage room with labelled shelves. Each shelf holds a glowing jar labelled 'stash@{0}: login fix WIP', 'stash@{1}: API experiment', etc. An alien porter is carefully placing a new jar; another is reaching up to retrieve one. A small sign reads 'please apply before you pop'.`}
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/stashing-shelf.png"
+		alt="Poster 'Stashing' showing wooden shelves with labelled glowing jars, one alien placing a new jar, another reaching up to retrieve one, a sign reads 'please apply before you pop'"
+		caption="Shelf your work. Come back for it later."
 	/>
 
 	<h2>What is this?</h2>

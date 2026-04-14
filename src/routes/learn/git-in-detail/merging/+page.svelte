@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
 	import AskYourAgent from '$lib/components/AskYourAgent.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 </script>
 
@@ -12,9 +12,10 @@
 	estimatedMinutes={10}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="Two tube-map branches converging at a single merge-commit station, with a green 'merge commit' glow at the junction. Side panel: an alternative visualisation — a conflict screen showing the three-way view with 'BASE / MINE / THEIRS' sections."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/merging-converge.png"
+		alt="Poster 'Merging in Depth' showing two tube lines — feature/search (red) and main (green) — converging at a glowing diamond-shaped MERGE COMMIT station with an alien celebrating below"
+		caption="Two lines, one history — kept forever."
 	/>
 
 	<h2>What is this?</h2>
@@ -113,9 +114,10 @@
 		When Git can't auto-merge, it marks the conflicting lines in the file with three-way markers:
 	</p>
 
-	<ImagePlaceholder
-		description="A code file with conflict markers visible: <<<<<<< HEAD, then 'your version', then =======, then 'their version', then >>>>>>> feature. Annotations point to each marker explaining what it is. A second panel shows the upgraded zdiff3 style with an additional '||||||| base' section showing the original common ancestor."
-		size="medium"
+	<DiagramImage
+		src="git-in-detail/merging-conflict-markers.png"
+		alt="Poster 'Reading Conflict Markers' showing a code-editor window with three colour-banded sections — HEAD (yours, red), base (the original, grey, tagged ZDIFF3), feature (theirs, green) — annotated with callouts"
+		caption="zdiff3 shows you the original too — less guessing."
 	/>
 
 	<p>You get three pieces:</p>

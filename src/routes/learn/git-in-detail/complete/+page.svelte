@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PathPageLayout from '$lib/components/PathPageLayout.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
+	import DiagramImage from '$lib/components/DiagramImage.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import { base } from '$app/paths';
 </script>
@@ -12,9 +12,10 @@
 	estimatedMinutes={3}
 	pathId="git-in-detail"
 >
-	<ImagePlaceholder
-		description="Celebration scene — aliens gathered at a tube-map terminus station, all fourteen lines lit up on the wall map behind them. Banners, a confetti cannon, and a signpost pointing to other stations: 'Error Whisperer →', 'How the Web Works →', 'Shipping →'."
-		size="large"
+	<DiagramImage
+		src="git-in-detail/complete-terminus.png"
+		alt="Poster 'You Made It — End of the Line' showing three celebrating aliens at a terminus with all fourteen tube lines converging at the 'Git in Detail — Complete' station, and a signpost to Error Whisperer, How the Web Works, Shipping"
+		caption="You can hold your own with any dev — or AI."
 	/>
 
 	<h2>You made it</h2>
