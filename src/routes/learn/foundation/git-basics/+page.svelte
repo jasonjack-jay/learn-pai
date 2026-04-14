@@ -199,4 +199,8 @@ Want me to delete the branch?"
 	<p>If you want to go deeper into Git commands, we've put together a <a href="{base}/git-reference" target="_blank">quick reference card</a> with the most common ones. Completely optional — but useful if you're the kind of person who likes to understand what's happening under the hood.</p>
 </Callout>
 
+<Callout type="tip">
+	<p>Ready for more? <a href="{base}/learn/git-in-detail">Git in Detail</a> is a 14-page deep dive that picks up where this page leaves off — rebasing, worktrees, undoing disasters, pull requests, hooks, and the rest of what your AI assistant is doing behind the scenes. Freely navigable, jump to whatever you need.</p>
+</Callout>
+
 </ModuleLayout>
