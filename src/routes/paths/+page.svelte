@@ -9,7 +9,7 @@
 	// Ensure quiz is marked done if they got here
 	if (!profile.quizCompleted) completeQuiz();
 
-	const allPaths: PathId[] = ['know-me', 'get-things-done', 'architecture'];
+	const allPaths: PathId[] = ['know-me', 'get-things-done', 'architecture', 'git-in-detail'];
 
 	function proceed() {
 		if (profile.interests.length === 0) return;

@@ -1,6 +1,6 @@
 // Central app state using Svelte 5 runes
 
-export type PathId = 'know-me' | 'get-things-done' | 'architecture';
+export type PathId = 'know-me' | 'get-things-done' | 'architecture' | 'git-in-detail';
 export type TierId = 'foundation' | 'core' | 'intermediate' | 'advanced';
 export type StreamId = 'developer' | 'vibe-coder' | 'pai-learner';
 
@@ -289,6 +289,169 @@ export const modules: Module[] = [
 		prerequisiteIds: ['first-workflow']
 	},
 
+	// Tier 2 — Path D: Git in Detail (freely navigable)
+	{
+		id: 'git-in-detail-intro',
+		title: 'Why Git in Detail',
+		description: 'What this path covers and how to use it',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail',
+		order: 0,
+		estimatedMinutes: 4,
+		prerequisiteIds: ['git-basics']
+	},
+	{
+		id: 'git-in-detail-hub',
+		title: 'Index — pick your section',
+		description: 'The map. Every concept with what it covers and when to read it.',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/index-hub',
+		order: 1,
+		estimatedMinutes: 2
+	},
+	{
+		id: 'git-in-detail-setup',
+		title: 'Setting Up Git',
+		description: 'Config, .gitignore, SSH keys, and the .git folder',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/setup',
+		order: 2,
+		estimatedMinutes: 8
+	},
+	{
+		id: 'git-in-detail-staging',
+		title: 'The Staging Area',
+		description: 'Add, commit, status, diff — and why Git has a waiting room',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/staging',
+		order: 3,
+		estimatedMinutes: 10
+	},
+	{
+		id: 'git-in-detail-branches',
+		title: 'Branches in Depth',
+		description: 'Switch, checkout, tracking, naming, and the HEAD pointer',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/branches',
+		order: 4,
+		estimatedMinutes: 8
+	},
+	{
+		id: 'git-in-detail-merging',
+		title: 'Merging in Depth',
+		description: 'Fast-forward, merge commits, squash, and conflict resolution',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/merging',
+		order: 5,
+		estimatedMinutes: 10
+	},
+	{
+		id: 'git-in-detail-rebasing',
+		title: 'Rebasing',
+		description: 'Replaying commits, interactive rebase, and the Golden Rule',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/rebasing',
+		order: 6,
+		estimatedMinutes: 10
+	},
+	{
+		id: 'git-in-detail-remotes',
+		title: 'Working with Remotes',
+		description: 'Fetch vs pull, forks, push flags, and remote URLs',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/remotes',
+		order: 7,
+		estimatedMinutes: 10
+	},
+	{
+		id: 'git-in-detail-stashing',
+		title: 'Stashing',
+		description: 'Setting work aside safely when you need to switch gears',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/stashing',
+		order: 8,
+		estimatedMinutes: 6
+	},
+	{
+		id: 'git-in-detail-history',
+		title: 'Investigating History',
+		description: 'Log, show, blame, and bisect — who did what and when',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/history',
+		order: 9,
+		estimatedMinutes: 10
+	},
+	{
+		id: 'git-in-detail-undoing',
+		title: 'Undoing Things',
+		description: 'Restore, revert, reset, reflog — the full "Oh No" spectrum',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/undoing',
+		order: 10,
+		estimatedMinutes: 10
+	},
+	{
+		id: 'git-in-detail-worktrees',
+		title: 'Worktrees',
+		description: 'Parallel working directories — and why AI agents love them',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/worktrees',
+		order: 11,
+		estimatedMinutes: 8
+	},
+	{
+		id: 'git-in-detail-pull-requests',
+		title: 'Pull Requests',
+		description: 'Lifecycle, merge methods, code review, and the gh CLI',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/pull-requests',
+		order: 12,
+		estimatedMinutes: 10
+	},
+	{
+		id: 'git-in-detail-tags',
+		title: 'Tags, Releases & Cherry-Pick',
+		description: 'Semver, annotated vs lightweight, and backporting fixes',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/tags',
+		order: 13,
+		estimatedMinutes: 6
+	},
+	{
+		id: 'git-in-detail-hooks',
+		title: 'Git Hooks & Automation',
+		description: 'Scripts at Git events — catch bad code before it ships',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/hooks',
+		order: 14,
+		estimatedMinutes: 8
+	},
+	{
+		id: 'git-in-detail-complete',
+		title: "You've Reached the Terminus",
+		description: 'A quick recap and where to head next',
+		tier: 'core',
+		path: 'git-in-detail',
+		slug: 'git-in-detail/complete',
+		order: 15,
+		estimatedMinutes: 3
+	},
+
 	// Tier 2 — Path C: Architecture
 	{
 		id: 'nine-primitives',
@@ -338,7 +501,17 @@ export const modules: Module[] = [
 
 // ─── Path metadata ────────────────────────────────────────────
 
-export const paths: Record<PathId, { title: string; tagline: string; icon: string; color: string }> = {
+export interface PathMeta {
+	title: string;
+	tagline: string;
+	icon: string;
+	color: string;
+	/** When true, modules within this path do not enforce sequential prerequisites in the UI
+	 *  — users can jump freely between pages from the hub or sidebar. */
+	freelyNavigable?: boolean;
+}
+
+export const paths: Record<PathId, PathMeta> = {
 	'know-me': {
 		title: 'AI That Knows Me',
 		tagline: 'Teach AI who you are so it can truly help',
@@ -356,6 +529,13 @@ export const paths: Record<PathId, { title: string; tagline: string; icon: strin
 		tagline: 'See how all the pieces fit together',
 		icon: '🏗️',
 		color: 'emerald'
+	},
+	'git-in-detail': {
+		title: 'Git in Detail',
+		tagline: 'Everything Git — so you can hold your own with any developer',
+		icon: '🚇',
+		color: 'purple',
+		freelyNavigable: true
 	}
 };
 
