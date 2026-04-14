@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { base } from '$app/paths';
-	import { getProfile, getFoundationModules, getModulesForPath, paths, streamMeta, isModuleUnlocked, getFoundationProgress, getProgressForPath } from '$lib/state.svelte';
+	import { getProfile, getFoundationModules, getModulesForPath, paths, streamMeta, isModuleUnlocked, getFoundationProgress, getProgressForPath, modules, toggleInterest, completeQuiz } from '$lib/state.svelte';
 	import { page } from '$app/stores';
 
 	let { children } = $props();
@@ -12,6 +12,29 @@
 	const isReferencePage = $derived(currentPath.includes('/terminal-reference') || currentPath.includes('/git-reference'));
 	const isSetupPage = $derived(currentPath.includes('/setup'));
 	const showSidebar = $derived(profile.quizCompleted && !isReferencePage && !isSetupPage && profile.stream !== 'developer' && currentPath !== `${base}/` && currentPath !== base);
+
+	// Match a sidebar entry to the current URL with exact-path semantics (trailing
+	// slash tolerated). Using `includes` would mark the intro page active on every
+	// child page whose slug starts with the intro's slug.
+	function isActiveSlug(slug: string): boolean {
+		const target = `${base}/learn/${slug}`;
+		return currentPath === target || currentPath === `${target}/`;
+	}
+
+	// Auto-enable the sidebar + opt into the relevant path when someone lands on a
+	// learn URL directly (e.g. a shared link). Each guard only fires when its
+	// condition flips, so there's no effect loop.
+	$effect(() => {
+		if (!currentPath || !currentPath.includes('/learn/')) return;
+		const afterLearn = currentPath.split('/learn/')[1]?.replace(/\/+$/, '') ?? '';
+		if (!afterLearn) return;
+		const mod = modules.find(
+			(m) => m.slug === afterLearn || afterLearn.startsWith(m.slug + '/')
+		);
+		if (!mod?.path) return;
+		if (!profile.quizCompleted) completeQuiz();
+		if (!profile.interests.includes(mod.path)) toggleInterest(mod.path);
+	});
 </script>
 
 <svelte:head>
@@ -56,7 +79,7 @@
 					{#each getFoundationModules(profile.stream) as mod}
 						{@const unlocked = isModuleUnlocked(mod, profile.completedModules, profile.stream)}
 						{@const completed = profile.completedModules.has(mod.id)}
-						{@const active = currentPath.includes(mod.slug)}
+						{@const active = isActiveSlug(mod.slug)}
 						<li>
 							<a
 								href="{base}/learn/{mod.slug}"
@@ -81,7 +104,7 @@
 			{#each profile.interests as pathId}
 				{@const pathMeta = paths[pathId]}
 				{@const pathModules = getModulesForPath(pathId)}
-				{@const progress = getProgressForPath(pathId, profile.completedModules)}
+				{@const progress = getProgressForPath(pathId, profile.completedModules, profile.visitedModules)}
 				{@const freelyNav = pathMeta.freelyNavigable === true}
 				<div class="mb-6">
 					<div class="flex items-center justify-between mb-2">
@@ -98,19 +121,20 @@
 							{@const unlocked = freelyNav || isModuleUnlocked(mod, profile.completedModules, profile.stream)}
 							{@const completed = profile.completedModules.has(mod.id)}
 							{@const visited = profile.visitedModules.has(mod.id)}
-							{@const active = currentPath.includes(mod.slug)}
+							{@const visitedOrCompleted = completed || (freelyNav && visited)}
+							{@const active = isActiveSlug(mod.slug)}
 							<li>
 								<a
 									href="{base}/learn/{mod.slug}"
 									class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors {active ? 'font-medium' : ''} {!unlocked && !completed ? 'text-gray-300 pointer-events-none' : 'hover:bg-gray-50'}"
-									style="{active ? 'background: var(--color-accent-light); color: var(--color-accent)' : ''} {completed && !active ? 'color: var(--color-success)' : ''}"
+									style="{active ? 'background: var(--color-accent-light); color: var(--color-accent)' : ''} {visitedOrCompleted && !active ? 'color: var(--color-success)' : ''}"
 								>
-									{#if completed}
-										<svg class="w-4 h-4 shrink-0" style="color: var(--color-success)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+									{#if visitedOrCompleted}
+										<svg class="w-4 h-4 shrink-0" style="color: var(--color-success)" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
 									{:else if !unlocked}
-										<svg class="w-4 h-4 shrink-0 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-									{:else if freelyNav && visited}
-										<div class="w-4 h-4 shrink-0 rounded-full border-2" style="border-color: var(--color-accent-light); background: var(--color-accent-light)"></div>
+										<svg class="w-4 h-4 shrink-0 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+									{:else if freelyNav}
+										<span class="w-4 h-4 shrink-0 rounded-full inline-flex items-center justify-center text-[10px] font-bold leading-none" style="background: var(--color-accent-light); color: var(--color-accent)" aria-hidden="true">?</span>
 									{:else}
 										<div class="w-4 h-4 shrink-0 rounded-full border-2 border-gray-300"></div>
 									{/if}

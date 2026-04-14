@@ -13,7 +13,7 @@
 	pathId="git-in-detail"
 >
 	<ImagePlaceholder
-		description={`A tube-map station storage room with labelled shelves. Each shelf holds a glowing jar labelled 'stash@&#123;0&#125;: login fix WIP', 'stash@{1}: API experiment', etc. An alien porter is carefully placing a new jar; another is reaching up to retrieve one. A small sign reads 'please apply before you pop'.`}
+		description={`A tube-map station storage room with labelled shelves. Each shelf holds a glowing jar labelled 'stash@{0}: login fix WIP', 'stash@{1}: API experiment', etc. An alien porter is carefully placing a new jar; another is reaching up to retrieve one. A small sign reads 'please apply before you pop'.`}
 		size="medium"
 	/>
 

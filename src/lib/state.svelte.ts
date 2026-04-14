@@ -594,10 +594,18 @@ export function isModuleUnlocked(mod: Module, completed: Set<string>, stream?: S
 	return prereqs.every((id) => completed.has(id));
 }
 
-export function getProgressForPath(pathId: PathId, completed: Set<string>): number {
+export function getProgressForPath(
+	pathId: PathId,
+	completed: Set<string>,
+	visited?: Set<string>
+): number {
 	const pathModules = getModulesForPath(pathId);
 	if (pathModules.length === 0) return 0;
-	const done = pathModules.filter((m) => completed.has(m.id)).length;
+	// Freely-navigable paths have no "mark complete" button — measure progress by
+	// how many pages the user has visited instead.
+	const freelyNav = paths[pathId]?.freelyNavigable === true;
+	const source = freelyNav && visited ? visited : completed;
+	const done = pathModules.filter((m) => source.has(m.id)).length;
 	return Math.round((done / pathModules.length) * 100);
 }
 

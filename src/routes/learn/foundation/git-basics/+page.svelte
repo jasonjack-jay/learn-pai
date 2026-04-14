@@ -199,8 +199,40 @@ Want me to delete the branch?"
 	<p>If you want to go deeper into Git commands, we've put together a <a href="{base}/git-reference" target="_blank">quick reference card</a> with the most common ones. Completely optional — but useful if you're the kind of person who likes to understand what's happening under the hood.</p>
 </Callout>
 
-<Callout type="tip">
-	<p>Ready for more? <a href="{base}/learn/git-in-detail">Git in Detail</a> is a 14-page deep dive that picks up where this page leaves off — rebasing, worktrees, undoing disasters, pull requests, hooks, and the rest of what your AI assistant is doing behind the scenes. Freely navigable, jump to whatever you need.</p>
-</Callout>
+<div class="my-8">
+	<p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Keep going</p>
+	<a
+		href="{base}/learn/git-in-detail"
+		class="group block rounded-2xl border-2 p-5 transition-all hover:shadow-md"
+		style="border-color: #ddd6fe; background: linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%)"
+	>
+		<div class="flex items-start gap-4">
+			<div
+				class="shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl text-2xl"
+				style="background: #ede9fe"
+				aria-hidden="true"
+			>
+				🚇
+			</div>
+			<div class="flex-1 min-w-0">
+				<div class="flex items-center gap-2 mb-1">
+					<span class="text-[10px] font-semibold uppercase tracking-wider" style="color: #7c3aed">
+						Next learning path
+					</span>
+					<span class="text-[10px] text-gray-400">· 14 pages · freely navigable</span>
+				</div>
+				<h3 class="text-lg font-semibold mb-1.5" style="color: var(--color-ink)">
+					Git in Detail
+					<span class="inline-block ml-0.5 transition-transform group-hover:translate-x-0.5" style="color: #7c3aed">→</span>
+				</h3>
+				<p class="text-sm text-gray-600 leading-relaxed mb-0">
+					The deep dive that picks up where this page leaves off. Rebasing, worktrees, undoing
+					disasters, pull requests, hooks, and the rest of what your AI assistant is doing behind
+					the scenes. Jump to whichever section you need.
+				</p>
+			</div>
+		</div>
+	</a>
+</div>
 
 </ModuleLayout>
