@@ -35,6 +35,17 @@
 		truly lost for at least 30 days.
 	</p>
 
+	<p>
+		<strong>If you're thinking "I want to keep this safe while I undo,"</strong> you want
+		<code>revert</code> or a soft reset — both leave the work recoverable.
+		<br />
+		<strong>If you're thinking "I need this gone right now and I'm sure,"</strong> you want
+		<code>reset --hard</code> — but read the reflog section first.
+		<br />
+		<strong>If you're thinking "I just did something catastrophic,"</strong> stop typing,
+		<code>git reflog</code>, and work back from there.
+	</p>
+
 	<h3>The undo spectrum (smallest to biggest)</h3>
 
 	<h4><code>git restore</code> — one file at a time, gentle</h4>
